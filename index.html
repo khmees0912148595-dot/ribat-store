@@ -9,143 +9,196 @@
 <style>
 :root{--g:#073b2b;--g2:#10543d;--gold:#d8b45a;--bg:#f6f5ef}
 *{box-sizing:border-box}
-body{margin:0;padding-bottom:80px;font-family:Tahoma,Arial;background:var(--bg);color:#1b2920}
-header{background:linear-gradient(135deg,var(--g),var(--g2));color:white;padding:20px 15px;border-bottom:3px solid var(--gold)}
-.brand{max-width:900px;margin:auto;display:flex;align-items:center;gap:12px}
-.logo{border:2px solid var(--gold);color:var(--gold);border-radius:14px;padding:10px 15px;font-size:24px;font-weight:bold}
+body{margin:0;font-family:Tahoma,Arial;background:var(--bg);color:#17251e;padding-bottom:80px}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0;border-radius:11px;padding:11px 14px}
+.header{background:linear-gradient(135deg,#041e17,var(--g2));color:white;padding:22px 16px 28px;border-radius:0 0 25px 25px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{background:var(--gold);color:var(--g);font-size:27px;font-weight:bold;border-radius:14px;padding:12px}
 h1{font-size:21px;margin:0 0 6px}
-header p{margin:0;font-size:12px;color:#e0e8e0}
-main{max-width:900px;margin:auto;padding:15px}
-.hero{padding:20px;border-radius:18px;background:linear-gradient(120deg,#fff,#f1e7c9);border:1px solid #e6d6a5;margin-bottom:15px}
-.hero h2{color:var(--g);margin-top:0}
-.hero p{font-size:13px;line-height:1.8}
-input,select,textarea{width:100%;padding:12px;border:1px solid #d8dfd7;border-radius:10px;background:white;font:inherit;margin:5px 0 10px}
-button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:10px 13px}
-.primary{background:var(--g);color:white}
-.gold{background:var(--gold);color:var(--g);font-weight:bold}
-.outline{background:white;color:var(--g);border:1px solid #ddd}
-.search{display:flex;gap:8px}
-.search input{flex:1;min-width:0}
-.categories{display:flex;gap:8px;overflow-x:auto;margin:12px 0 20px}
-.cat{background:white;border:1px solid #ddd;white-space:nowrap}
+.header p{margin:0;color:#e9d9a5;font-size:13px}
+.hero{margin-top:24px}
+.hero h2{font-size:26px;line-height:1.5;margin:6px 0}
+.hero p{color:#e5eee8;font-size:13px;line-height:1.8}
+.wrap{max-width:950px;margin:auto;padding:15px}
+.search{width:100%;padding:14px;border:1px solid #ddd;border-radius:12px;background:white;margin-bottom:13px}
+.categories{display:flex;gap:8px;overflow:auto;margin-bottom:15px}
+.cat{white-space:nowrap;background:white;border:1px solid #ddd}
 .cat.active{background:var(--g);color:white}
-.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.product{background:white;border:1px solid #e0e5dd;border-radius:15px;overflow:hidden}
-.photo{height:125px;background:#e8eee7;display:grid;place-items:center;color:#738074;overflow:hidden}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card,.panel{background:white;border-radius:16px;border:1px solid #e4e5dd;overflow:hidden}
+.photo{height:135px;background:#eeefe7;display:grid;place-items:center;color:#a9ad9e;font-size:34px}
 .photo img{width:100%;height:100%;object-fit:cover}
-.details{padding:11px}
-.details h3{font-size:14px;margin:0 0 8px}
-.price{color:var(--g);font-size:17px;font-weight:bold}
-.small{font-size:12px;color:#718076}
-.row{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-top:10px}
-.add{background:var(--gold);color:var(--g);font-size:21px;font-weight:bold}
-.panel{background:white;border:1px solid #e0e5dd;border-radius:15px;padding:15px;margin:14px 0}
-.panel h2{font-size:18px;color:var(--g)}
-.cartitem{padding:12px 0;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;gap:8px}
-.qty{display:flex;align-items:center;gap:7px}
-.qty button{background:#eef2eb}
-.total{display:flex;justify-content:space-between;padding-top:15px;font-weight:bold;color:var(--g)}
-.notice{padding:12px;background:#fff4d7;border:1px solid #ebd9a3;border-radius:10px;font-size:12px;line-height:1.8;margin:12px 0}
+.info{padding:11px}
+.info h3{font-size:14px;margin:0 0 7px;overflow-wrap:anywhere}
+.desc{font-size:11px;color:#788078;min-height:16px}
+.price{font-weight:bold;color:var(--g);margin:10px 0}
+.gold{background:var(--gold);color:#17251e;font-weight:bold}
+.green{background:var(--g);color:white}
+.add{width:100%}
+.panel{padding:15px;margin:14px 0}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:13px;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;background:white}
+.field textarea{min-height:70px}
+.item{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #eee;padding:12px 0}
+.qty{display:flex;align-items:center;gap:8px}
+.total{display:flex;justify-content:space-between;font-size:18px;font-weight:bold;padding:14px 0}
+.note{background:#fff5d7;padding:11px;border-radius:10px;font-size:12px;line-height:1.8}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #ddd;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 3px}
+.bottom button{background:white;color:#657169;font-size:11px;padding:7px 2px}
+.bottom button.active{color:var(--g);font-weight:bold}
+.view{display:none}.view.active{display:block}
+.row{display:flex;gap:8px}.row>*{min-width:0;flex:1}
+.adminitem{display:flex;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #eee}
+.adminitem .grow{flex:1;overflow-wrap:anywhere}
+.small{font-size:12px}
 .hidden{display:none!important}
-.adminitem{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #eee}
-.adminitem .info{flex:1;min-width:0}
-.adminitem button{padding:8px;font-size:12px}
-.bottomnav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #ddd;display:flex;justify-content:center;padding:7px 3px;z-index:5}
-.navinner{width:100%;max-width:600px;display:grid;grid-template-columns:repeat(4,1fr)}
-.navbtn{background:transparent;color:#718076;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px}
-.navbtn span:first-child{font-size:20px}
-.navbtn.active{background:#edf3eb;color:var(--g);font-weight:bold}
-footer{text-align:center;font-size:11px;color:#718076;padding:20px}
-@media(min-width:600px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}.photo{height:155px}}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.photo{height:180px}}
 </style>
 </head>
 <body>
-<header><div class="brand"><div class="logo">ر</div><div><h1>الرباط للتسوق</h1><p>تسوّق بسهولة • سرت وضواحيها</p></div></div></header>
-<main>
-<section id="shop">
-<div class="hero"><h2>مرحباً بيك في الرباط للتسوق</h2><p>اختار احتياجاتك، أضفها للسلة وجهّز طلبك. الدفع عند الاستلام متاح.</p></div>
-<div class="search"><input id="search" placeholder="🔎 ابحث عن منتج..."><button class="outline" onclick="view('cart')">السلة (<span id="count">0</span>)</button></div>
-<h3>الأقسام</h3><div id="categories" class="categories"></div>
-<div class="row"><h3 id="heading">كل المنتجات</h3><span id="number" class="small"></span></div>
-<div id="products" class="products"></div>
+<header class="header">
+ <div class="brand"><div class="logo">ر</div><div><h1>الرباط للتسوق</h1><p>الشعبية، سرت · التوصيل في سرت وضواحيها</p></div></div>
+ <div class="hero"><small style="color:#e6c873">أهلاً بيك في متجرنا</small><h2>تسوّق بسهولة<br>وبأسعار تناسبك</h2><p>اختار منتجاتك من المتجر وجهّز طلبك في دقائق.</p></div>
+</header>
+<main class="wrap">
+<section id="shop" class="view active">
+ <h3>المنتجات</h3>
+ <input class="search" id="search" placeholder="ابحث عن منتج..." oninput="renderProducts()">
+ <div class="categories" id="categories"></div>
+ <div class="grid" id="products"></div>
 </section>
 
-<section id="cart" class="hidden">
-<div class="row"><h2>سلة المشتريات</h2><button class="outline" onclick="view('shop')">رجوع للمتجر</button></div>
-<div class="panel"><div id="cartitems"></div><div id="total"></div></div>
-<div class="panel"><h2>بيانات التوصيل</h2>
-<label>الاسم الكامل *</label><input id="customer" placeholder="اسم الزبون">
-<label>رقم الهاتف *</label><input id="phone" type="tel" placeholder="09xxxxxxxx">
-<label>العنوان داخل سرت أو ضواحيها *</label><textarea id="address" placeholder="المنطقة والشارع وأقرب علامة"></textarea>
-<label>طريقة الدفع</label><select id="payment"><option>الدفع عند الاستلام</option><option>موبي كاش</option><option>يسر باي</option><option>ون باي</option><option>البطاقة المصرفية</option></select>
-<label>ملاحظات</label><textarea id="notes" placeholder="ملاحظات إضافية (اختياري)"></textarea>
-<div class="notice">الحد الأدنى للطلب 20 دينار، من غير التوصيل. طرق الدفع الإلكترونية تحتاج تأكيدها مع المحل.</div>
-<button class="primary" style="width:100%" onclick="prepareOrder()">تجهيز الطلب</button>
-<p id="message" class="small"></p><textarea id="order" class="hidden" rows="9" readonly></textarea>
-<button id="copy" class="gold hidden" style="width:100%" onclick="copyOrder()">نسخ تفاصيل الطلب</button>
-</div>
+<section id="cart" class="view">
+ <h3>سلة المشتريات</h3>
+ <div class="panel">
+  <div id="cartItems"></div>
+  <div class="total"><span>المجموع</span><span id="total">0.00 د.ل</span></div>
+  <div class="note">الحد الأدنى للطلب 20 دينار، من غير التوصيل.</div>
+ </div>
+ <div class="panel">
+  <h3>بيانات التوصيل</h3>
+  <div class="field"><label>الاسم *</label><input id="customer" placeholder="اسمك الكامل"></div>
+  <div class="field"><label>رقم الهاتف *</label><input id="phone" type="tel" placeholder="09xxxxxxxx"></div>
+  <div class="field"><label>العنوان *</label><textarea id="address" placeholder="المنطقة والشارع وأقرب علامة"></textarea></div>
+  <div class="field"><label>طريقة الدفع</label>
+   <select id="payment">
+    <option>الدفع عند الاستلام</option>
+    <option>موبيل كاش - تأكيد مع المحل</option>
+    <option>يسر باي - تأكيد مع المحل</option>
+    <option>ون باي - تأكيد مع المحل</option>
+    <option>البطاقة - تأكيد مع المحل</option>
+   </select>
+  </div>
+  <div class="field"><label>ملاحظات</label><textarea id="notes" placeholder="ملاحظات إضافية (اختياري)"></textarea></div>
+  <button class="gold" style="width:100%" onclick="sendOrder()">إرسال الطلب عبر واتساب</button>
+  <p class="small">بيفتح واتساب برسالة جاهزة. اضغط إرسال داخل واتساب لإتمام الطلب.</p>
+ </div>
 </section>
 
-<section id="admin" class="hidden">
-<div class="row"><h2>إدارة المنتجات</h2><button class="outline" onclick="view('shop')">عرض المتجر</button></div>
-<div class="panel"><h3 id="formheading">إضافة منتج</h3>
-<label>اسم المنتج *</label><input id="pname" placeholder="اسم المنتج">
-<label>السعر بالدينار *</label><input id="pprice" type="number" min="0" step="0.01" placeholder="السعر">
-<label>القسم</label><select id="pcat"><option>مواد غذائية</option><option>مشروبات</option><option>منتجات البيت</option><option>عناية شخصية</option><option>أخرى</option></select>
-<label>وصف المنتج</label><input id="pdesc" placeholder="الحجم أو النوع">
-<label>صورة المنتج</label><input id="pimage" type="file" accept="image/*">
-<button class="primary" onclick="saveProduct()">حفظ المنتج</button>
-<button class="outline" onclick="resetForm()">إلغاء</button>
-<p class="small" id="adminmsg"></p>
-</div>
-<div class="panel"><h3>المنتجات الحالية</h3><div id="adminlist"></div></div>
-<div class="notice">مهم: هذه الإدارة تحفظ التغييرات في نفس المتصفح فقط. لكي تظهر التعديلات والصور لكل الزبائن، يلزم ربط التطبيق بقاعدة بيانات مشتركة.</div>
+<section id="admin" class="view">
+ <h3>إدارة المنتجات</h3>
+ <div class="note">تنبيه: التعديلات هنا محفوظة في المتصفح الحالي فقط، ولا تظهر تلقائياً للزبائن الآخرين. النشر العام يتطلب ربط قاعدة بيانات.</div>
+ <div id="login" class="panel">
+  <div class="field"><label>كلمة مرور الإدارة</label><input id="password" type="password"></div>
+  <button class="green" onclick="login()">دخول الإدارة</button>
+  <p class="small">كلمة المرور الافتراضية: Ribat2026!</p>
+ </div>
+ <div id="adminPanel" class="hidden">
+  <div class="panel">
+   <h3 id="formTitle">إضافة منتج</h3>
+   <input id="editId" type="hidden">
+   <div class="field"><label>اسم المنتج *</label><input id="pName"></div>
+   <div class="row">
+    <div class="field"><label>السعر بالدينار *</label><input id="pPrice" type="number" min="0" step="0.01"></div>
+    <div class="field"><label>التصنيف</label><input id="pCategory" placeholder="مواد غذائية"></div>
+   </div>
+   <div class="field"><label>وصف المنتج</label><input id="pDesc"></div>
+   <div class="field"><label>صورة المنتج</label><input id="pImage" type="file" accept="image/*" onchange="loadImage(event)"></div>
+   <img id="preview" class="hidden" style="width:90px;height:90px;object-fit:cover;border-radius:10px">
+   <button class="gold" onclick="saveProduct()">حفظ المنتج</button>
+   <button onclick="resetForm()">إلغاء</button>
+  </div>
+  <div class="panel"><h3>المنتجات الحالية</h3><div id="adminProducts"></div></div>
+  <button onclick="logout()">تسجيل الخروج</button>
+ </div>
 </section>
 
-<section id="about" class="hidden"><div class="panel"><h2>عن المتجر</h2><p>الرباط للتسوق — الشعبية، سرت، ليبيا. التوصيل في سرت وضواحيها.</p><p>الدفع عند الاستلام متاح.</p></div></section>
-<footer>الرباط للتسوق © 2026 • سرت، ليبيا</footer>
+<section id="about" class="view">
+ <div class="panel">
+  <h3>عن الرباط للتسوق</h3>
+  <p>الشعبية، سرت. التوصيل داخل سرت وضواحيها.</p>
+  <p>واتساب المحل: 0911541879</p>
+  <button class="green" onclick="window.open('https://wa.me/218911541879','_blank')">تواصل مع المحل</button>
+  <p class="small">خيارات الدفع الإلكتروني تحتاج تأكيد توفر الخدمة مع المحل قبل التحويل.</p>
+ </div>
+</section>
 </main>
 
-<nav class="bottomnav"><div class="navinner">
-<button class="navbtn active" data-page="shop" onclick="view('shop')"><span>⌂</span>الرئيسية</button>
-<button class="navbtn" data-page="shop" onclick="view('shop');document.getElementById('search').focus()"><span>⌕</span>بحث</button>
-<button class="navbtn" data-page="cart" onclick="view('cart')"><span>🛒</span>السلة</button>
-<button class="navbtn" data-page="admin" onclick="view('admin')"><span>⚙</span>الإدارة</button>
-</div></nav>
+<nav class="bottom">
+ <button id="nav-shop" class="active" onclick="showView('shop')">⌂<br>الرئيسية</button>
+ <button id="nav-cart" onclick="showView('cart')">🛒<br>السلة (<span id="count">0</span>)</button>
+ <button id="nav-admin" onclick="showView('admin')">⚙<br>الإدارة</button>
+ <button id="nav-about" onclick="showView('about')">ⓘ<br>المتجر</button>
+</nav>
 
 <script>
-const starter=[
-{id:1,name:"مياه شرب",price:1.5,cat:"مشروبات",desc:"عبوة مياه",image:""},
-{id:2,name:"عصير",price:2.5,cat:"مشروبات",desc:"حسب التوفر",image:""},
-{id:3,name:"أرز",price:7,cat:"مواد غذائية",desc:"حسب العبوة",image:""},
-{id:4,name:"مكرونة",price:2.5,cat:"مواد غذائية",desc:"أنواع مختلفة",image:""},
-{id:5,name:"مناديل",price:3,cat:"منتجات البيت",desc:"منتجات منزلية",image:""},
-{id:6,name:"صابون",price:4,cat:"عناية شخصية",desc:"حسب النوع",image:""}
-];
-function load(key,def){try{return JSON.parse(localStorage.getItem(key))??def}catch(e){return def}}
-let products=load("ribatProducts",starter),cart=load("ribatCart",{}),category="الكل",editing=null,image="";
 const $=id=>document.getElementById(id);
-function save(){try{localStorage.setItem("ribatProducts",JSON.stringify(products));localStorage.setItem("ribatCart",JSON.stringify(cart))}catch(e){alert("الصورة كبيرة أو مساحة التخزين ممتلئة. جرّب صورة أصغر.")}}
-function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function money(n){return Number(n).toLocaleString("ar-LY",{minimumFractionDigits:2,maximumFractionDigits:2})+" د.ل"}
-function view(id){["shop","cart","admin","about"].forEach(x=>$(x).classList.toggle("hidden",x!==id));document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.page===id));if(id==="cart")renderCart();if(id==="admin")renderAdmin();scrollTo(0,0)}
-function renderCategories(){let cats=["الكل",...new Set(products.map(p=>p.cat))];$("categories").innerHTML=cats.map(c=>`<button class="cat ${c===category?"active":""}" onclick="setCategory('${esc(c)}')">${esc(c)}</button>`).join("")}
-function setCategory(c){category=c;renderCategories();renderProducts()}
-function renderProducts(){let q=$("search").value.trim().toLowerCase();let list=products.filter(p=>(category==="الكل"||p.cat===category)&&(`${p.name} ${p.desc} ${p.cat}`.toLowerCase().includes(q)));$("heading").textContent=category==="الكل"?"كل المنتجات":category;$("number").textContent=list.length+" منتج";$("products").innerHTML=list.length?list.map(p=>`<article class="product"><div class="photo">${p.image?`<img src="${p.image}" alt="${esc(p.name)}">`:"صورة المنتج"}</div><div class="details"><h3>${esc(p.name)}</h3><div class="small">${esc(p.desc)}</div><p class="price">${money(p.price)}</p><div class="row"><span class="small">${esc(p.cat)}</span><button class="add" onclick="add(${p.id})">+</button></div></div></article>`).join(""):'<div class="panel">لا توجد منتجات مطابقة.</div>'}
-function add(id){cart[id]=(cart[id]||0)+1;save();updateCount()}
-function updateCount(){$("count").textContent=Object.values(cart).reduce((a,b)=>a+b,0)}
-function renderCart(){let entries=Object.entries(cart).filter(([id,q])=>q>0&&products.some(p=>p.id==id));let subtotal=entries.reduce((s,[id,q])=>s+products.find(p=>p.id==id).price*q,0);$("cartitems").innerHTML=entries.length?entries.map(([id,q])=>{let p=products.find(p=>p.id==id);return `<div class="cartitem"><div><b>${esc(p.name)}</b><div class="small">${money(p.price)} × ${q}</div></div><div class="qty"><button onclick="changeQty(${id},-1)">−</button>${q}<button onclick="changeQty(${id},1)">+</button></div></div>`}).join(""):"السلة فارغة";$("total").innerHTML=`<div class="total"><span>المجموع قبل التوصيل</span><span>${money(subtotal)}</span></div>${subtotal>0&&subtotal<20?`<div class="notice">باقي ${money(20-subtotal)} للوصول للحد الأدنى.</div>`:""}`;updateCount()}
-function changeQty(id,n){cart[id]=(cart[id]||0)+n;if(cart[id]<=0)delete cart[id];save();renderCart()}
-function prepareOrder(){let entries=Object.entries(cart).filter(([id,q])=>q>0&&products.some(p=>p.id==id));let sum=entries.reduce((s,[id,q])=>s+products.find(p=>p.id==id).price*q,0);if(!entries.length)return $("message").textContent="السلة فارغة.";if(!$("customer").value.trim()||!$("phone").value.trim()||!$("address").value.trim())return $("message").textContent="عبّي الاسم والهاتف والعنوان.";if(sum<20)return $("message").textContent="الحد الأدنى للطلب 20 دينار، من غير التوصيل.";let lines=entries.map(([id,q])=>{let p=products.find(p=>p.id==id);return `${p.name} × ${q} = ${money(p.price*q)}`}).join("\n");$("order").value=`طلب جديد - الرباط للتسوق\nالاسم: ${$("customer").value}\nالهاتف: ${$("phone").value}\nالعنوان: ${$("address").value}\nالدفع: ${$("payment").value}\nالمنتجات:\n${lines}\nالمجموع قبل التوصيل: ${money(sum)}\nالتوصيل: يُحدد بالتواصل مع المحل\nملاحظات: ${$("notes").value||"لا توجد"}`;$("order").classList.remove("hidden");$("copy").classList.remove("hidden");$("message").textContent="جهّزنا الطلب. انسخ التفاصيل وأرسلها للمحل؛ لم يُرسل تلقائياً."}
-async function copyOrder(){try{await navigator.clipboard.writeText($("order").value);alert("تم نسخ تفاصيل الطلب")}catch(e){$("order").select();alert("اضغط مطولاً على النص واختر نسخ")}}
-$("pimage").addEventListener("change",e=>{let f=e.target.files[0];if(!f){image="";return}if(f.size>800000){alert("اختار صورة أصغر من 800 كيلوبايت.");e.target.value="";image="";return}let r=new FileReader();r.onload=()=>image=r.result;r.readAsDataURL(f)});
-function saveProduct(){let name=$("pname").value.trim(),price=Number($("pprice").value);if(!name||$("pprice").value===""||price<0)return $("adminmsg").textContent="اكتب اسم المنتج وسعر صحيح.";let data={name,price,cat:$("pcat").value,desc:$("pdesc").value.trim()};if(editing!==null){let p=products.find(p=>p.id===editing);Object.assign(p,data);if(image)p.image=image}else products.unshift({id:Date.now(),...data,image});save();resetForm();renderAdmin();renderCategories();renderProducts();$("adminmsg").textContent="تم الحفظ في هذا المتصفح."}
-function renderAdmin(){$("adminlist").innerHTML=products.map(p=>`<div class="adminitem"><div class="info"><b>${esc(p.name)}</b><div class="small">${money(p.price)} • ${esc(p.cat)}</div></div><button class="outline" onclick="editProduct(${p.id})">تعديل</button><button onclick="deleteProduct(${p.id})">حذف</button></div>`).join("")||"لا توجد منتجات"}
-function editProduct(id){let p=products.find(p=>p.id===id);editing=id;$("pname").value=p.name;$("pprice").value=p.price;$("pcat").value=p.cat;$("pdesc").value=p.desc||"";$("formheading").textContent="تعديل المنتج";image="";scrollTo(0,0)}
-function deleteProduct(id){let p=products.find(p=>p.id===id);if(!confirm("حذف "+p.name+"؟"))return;products=products.filter(p=>p.id!==id);delete cart[id];save();renderAdmin();renderCategories();renderProducts();renderCart()}
-function resetForm(){editing=null;image="";["pname","pprice","pdesc","pimage"].forEach(id=>$(id).value="");$("formheading").textContent="إضافة منتج"}
-$("search").addEventListener("input",renderProducts);
-renderCategories();renderProducts();renderCart();updateCount();
+const defaultProducts=[
+{id:1,name:"منتج تجريبي 1 - عدّل اسمه",price:25,category:"عروض",desc:"غيّر هذا المنتج من لوحة الإدارة",image:""},
+{id:2,name:"منتج تجريبي 2 - احذفه أو عدّله",price:20,category:"جديد",desc:"أضف منتجات محلك الحقيقية",image:""}
+];
+function load(key,fallback){try{return JSON.parse(localStorage.getItem(key))||fallback}catch(e){return fallback}}
+let products=load("ribatProducts",defaultProducts),cart=load("ribatCart",{}),category="الكل",logged=false,imageData="";
+function persist(){try{localStorage.setItem("ribatProducts",JSON.stringify(products));localStorage.setItem("ribatCart",JSON.stringify(cart))}catch(e){alert("التخزين ممتلئ. اختار صورة أصغر.")}}
+function money(n){return Number(n).toFixed(2)+" د.ل"}
+function safe(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function showView(v){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));$(v).classList.add("active");document.querySelectorAll(".bottom button").forEach(x=>x.classList.remove("active"));$("nav-"+v).classList.add("active");if(v==="cart")renderCart();if(v==="admin"&&logged)renderAdmin();window.scrollTo(0,0)}
+function renderProducts(){
+ let cats=["الكل",...new Set(products.map(p=>p.category||"عام"))];
+ $("categories").innerHTML=cats.map(c=>'<button class="cat '+(c===category?"active":"")+'" onclick="setCategory('+JSON.stringify(c).replace(/"/g,"&quot;")+')">'+safe(c)+'</button>').join("");
+ let q=$("search").value.toLowerCase();
+ let list=products.filter(p=>(category==="الكل"||(p.category||"عام")===category)&&(p.name+" "+p.desc+" "+p.category).toLowerCase().includes(q));
+ $("products").innerHTML=list.length?list.map(p=>'<article class="card"><div class="photo">'+(p.image?'<img src="'+p.image+'">':'✦')+'</div><div class="info"><h3>'+safe(p.name)+'</h3><div class="desc">'+safe(p.desc||p.category||"")+'</div><div class="price">'+money(p.price)+'</div><button class="green add" onclick="add('+p.id+')">أضف للسلة +</button></div></article>').join(""):'<div class="panel">لا توجد منتجات مطابقة.</div>';
+ updateCount();
+}
+function setCategory(c){category=c;renderProducts()}
+function add(id){cart[id]=(Number(cart[id])||0)+1;persist();updateCount()}
+function data(){return Object.entries(cart).map(([id,q])=>({p:products.find(p=>p.id==id),q:Number(q)})).filter(x=>x.p&&x.q>0)}
+function sum(){return data().reduce((s,x)=>s+x.p.price*x.q,0)}
+function updateCount(){$("count").textContent=Object.values(cart).reduce((s,n)=>s+(Number(n)||0),0)}
+function change(id,d){cart[id]=(Number(cart[id])||0)+d;if(cart[id]<=0)delete cart[id];persist();renderCart()}
+function renderCart(){
+ let list=data();
+ $("cartItems").innerHTML=list.length?list.map(x=>'<div class="item"><div>'+safe(x.p.name)+'<br><small>'+money(x.p.price)+' × '+x.q+'</small></div><div class="qty"><button onclick="change('+x.p.id+',-1)">−</button>'+x.q+'<button onclick="change('+x.p.id+',1)">+</button></div></div>').join(""):'السلة فارغة.';
+ $("total").textContent=money(sum());updateCount();
+}
+function sendOrder(){
+ let list=data(),total=sum();
+ if(!list.length)return alert("السلة فارغة.");
+ if(total<20)return alert("الحد الأدنى للطلب 20 دينار.");
+ for(let id of ["customer","phone","address"]){if(!$ (id).value.trim()){alert("عبّي الاسم والهاتف والعنوان.");$(id).focus();return}}
+ let lines=list.map(x=>"- "+x.p.name+" × "+x.q+" = "+money(x.p.price*x.q)).join("\n");
+ let msg="طلب جديد - الرباط للتسوق\nالاسم: "+$("customer").value+"\nالهاتف: "+$("phone").value+"\nالعنوان: "+$("address").value+"\nالدفع: "+$("payment").value+"\n\nالمنتجات:\n"+lines+"\n\nالمجموع قبل التوصيل: "+money(total)+"\nالتوصيل: يتأكد مع المحل\nملاحظات: "+($("notes").value||"لا توجد");
+ window.location.href="https://wa.me/218911541879?text="+encodeURIComponent(msg);
+}
+function login(){if($("password").value==="Ribat2026!"){logged=true;$("login").classList.add("hidden");$("adminPanel").classList.remove("hidden");renderAdmin()}else alert("كلمة المرور غير صحيحة.")}
+function logout(){logged=false;$("login").classList.remove("hidden");$("adminPanel").classList.add("hidden");$("password").value=""}
+function loadImage(e){let f=e.target.files[0];if(!f)return;if(f.size>900000){alert("اختار صورة أصغر من 900 كيلوبايت.");e.target.value="";return}let r=new FileReader();r.onload=()=>{imageData=r.result;$("preview").src=imageData;$("preview").classList.remove("hidden")};r.readAsDataURL(f)}
+function saveProduct(){
+ let name=$("pName").value.trim(),price=Number($("pPrice").value);
+ if(!name||$("pPrice").value===""||price<0||!Number.isFinite(price))return alert("اكتب اسم المنتج والسعر.");
+ let id=$("editId").value?Number($("editId").value):Date.now(),old=products.find(p=>p.id===id);
+ let p={id,name,price,category:$("pCategory").value.trim()||"عام",desc:$("pDesc").value.trim(),image:imageData||(old&&old.image)||""};
+ if(old)products=products.map(x=>x.id===id?p:x);else products.unshift(p);
+ persist();resetForm();renderProducts();renderAdmin();alert("تم الحفظ في هذا المتصفح فقط.");
+}
+function editProduct(id){let p=products.find(x=>x.id===id);$("editId").value=p.id;$("pName").value=p.name;$("pPrice").value=p.price;$("pCategory").value=p.category||"";$("pDesc").value=p.desc||"";imageData=p.image||"";if(imageData){$("preview").src=imageData;$("preview").classList.remove("hidden")}else $("preview").classList.add("hidden");$("formTitle").textContent="تعديل المنتج";window.scrollTo(0,0)}
+function deleteProduct(id){if(!confirm("متأكد تبي تحذف المنتج؟"))return;products=products.filter(p=>p.id!==id);delete cart[id];persist();renderProducts();renderAdmin()}
+function resetForm(){$("editId").value="";["pName","pPrice","pCategory","pDesc","pImage"].forEach(id=>$(id).value="");$("preview").classList.add("hidden");imageData="";$("formTitle").textContent="إضافة منتج"}
+function renderAdmin(){$("adminProducts").innerHTML=products.map(p=>'<div class="adminitem">'+(p.image?'<img src="'+p.image+'" style="width:45px;height:45px;object-fit:cover;border-radius:8px">':'✦')+'<div class="grow"><b>'+safe(p.name)+'</b><br><small>'+money(p.price)+'</small></div><button onclick="editProduct('+p.id+')">تعديل</button><button onclick="deleteProduct('+p.id+')">حذف</button></div>').join("")}
+renderProducts();renderCart();
 </script>
 </body>
 </html>
