@@ -1,57 +1,213 @@
 
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الرباط للتسوق</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f5f5f5;
-      color: #222;
-    }
-    header {
-      background: #176b45;
-      color: white;
-      text-align: center;
-      padding: 24px 12px;
-    }
-    main {
-      padding: 20px;
-      text-align: center;
-    }
-    .shop {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-top: 20px;
-    }
-    button {
-      background: #176b45;
-      color: white;
-      border: 0;
-      border-radius: 8px;
-      padding: 12px 20px;
-      font-size: 16px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الرباط للمواد الغذائية</title>
+<style>
+:root{--green:#176b42;--light:#f3f7f2;--orange:#f3a43b}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Tahoma,sans-serif;background:var(--light);color:#202820}
+header{background:var(--green);color:white;padding:22px 15px;text-align:center}
+header h1{margin:0 0 8px;font-size:27px}
+header p{margin:0;font-size:14px}
+.container{max-width:1050px;margin:auto;padding:15px}
+.notice{background:#fff4d9;border:1px solid #f1d28b;border-radius:10px;padding:12px;margin-bottom:15px;font-size:13px}
+.search{width:100%;padding:13px;border:1px solid #ddd;border-radius:10px;font-size:16px;margin-bottom:12px}
+.categories{display:flex;gap:8px;overflow:auto;padding:3px 0 12px}
+.categories button{border:1px solid #d5dfd5;background:white;border-radius:20px;padding:10px 15px;white-space:nowrap}
+.categories button.active{background:var(--green);color:white}
+h2{font-size:21px}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.product{background:white;border:1px solid #e6eae5;border-radius:13px;padding:13px;box-shadow:0 2px 7px #00000008}
+.emoji{font-size:42px;text-align:center;background:#f6f8f3;border-radius:10px;padding:12px}
+.product h3{font-size:16px;margin:10px 0 5px}
+.product p{font-size:12px;color:#777;margin:5px 0 10px}
+.price{font-weight:bold;color:var(--green);margin-bottom:10px}
+button{cursor:pointer;font-family:inherit}
+.add,.checkout-btn{border:0;background:var(--green);color:white;padding:11px;border-radius:9px;width:100%;font-size:14px}
+.section{background:white;border-radius:13px;padding:15px;margin-top:18px}
+.cart-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #eee}
+.qty{display:flex;align-items:center;gap:9px}
+.qty button{border:0;border-radius:7px;background:#e9f2e9;padding:7px 10px}
+.total{font-size:19px;font-weight:bold;color:var(--green);margin:15px 0}
+label{display:block;font-size:14px;margin:12px 0 6px}
+input,textarea,select{width:100%;padding:12px;border:1px solid #d8ded8;border-radius:8px;font:inherit;background:white}
+textarea{min-height:75px;resize:vertical}
+.small{font-size:12px;color:#777;line-height:1.7}
+footer{text-align:center;padding:25px 10px;color:#666;font-size:13px}
+@media(min-width:650px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
 </head>
 <body>
-  <header>
-    <h1>الرباط للتسوق</h1>
-    <p>محلك من الشعبية - سرت</p>
-  </header>
-  <main>
-    <div class="shop">
-      <h2>مرحباً بيكم</h2>
-      <p>تسوقوا منتجاتنا، والتوصيل داخل سرت وضواحيها.</p>
-      <p>الدفع عند الاستلام</p>
-      <button onclick="alert('قريباً ستتوفر المنتجات وطلبات الشراء')">
-        تسوق الآن
-      </button>
+<header>
+  <h1>🛒 الرباط للمواد الغذائية</h1>
+  <p>كل احتياجات بيتك في مكان واحد</p>
+  <p style="margin-top:8px">📍 الشعبية، سرت — التوصيل داخل سرت وضواحيها</p>
+</header>
+
+<main class="container">
+  <div class="notice">
+    ⚠️ هذه نسخة تجريبية للمتجر. أسماء المنتجات وأسعارها للتجربة وليست أسعارًا مؤكدة.
+  </div>
+
+  <input id="search" class="search" placeholder="🔎 ابحث عن منتج..." oninput="renderProducts()">
+
+  <div class="categories" id="categories"></div>
+
+  <h2>منتجاتنا</h2>
+  <div class="products" id="products"></div>
+
+  <section class="section" id="cart-section">
+    <h2>🛒 سلة المشتريات</h2>
+    <div id="cart"><p class="small">السلة فارغة. أضف المنتجات التي تريدها.</p></div>
+    <div class="total">الإجمالي: <span id="total">0.00</span> د.ل</div>
+    <p class="small">الإجمالي محسوب حسب الأسعار التجريبية المعروضة.</p>
+  </section>
+
+  <section class="section">
+    <h2>🚚 بيانات التوصيل</h2>
+    <form id="orderForm">
+      <label for="customer">اسم الزبون *</label>
+      <input id="customer" required placeholder="اكتب اسمك">
+
+      <label for="phone">رقم الهاتف *</label>
+      <input id="phone" type="tel" required placeholder="09xxxxxxxx">
+
+      <label for="area">منطقة التوصيل *</label>
+      <select id="area" required>
+        <option value="">اختر المنطقة</option>
+        <option>الشعبية</option>
+        <option>داخل سرت - منطقة أخرى</option>
+        <option>ضواحي سرت</option>
+      </select>
+
+      <label for="address">العنوان بالتفصيل *</label>
+      <textarea id="address" required placeholder="الشارع، أقرب علامة مميزة، وأي تفاصيل تساعد المندوب"></textarea>
+
+      <label for="notes">ملاحظات إضافية</label>
+      <textarea id="notes" placeholder="أي ملاحظات على الطلب (اختياري)"></textarea>
+
+      <label>طريقة الدفع</label>
+      <input value="الدفع عند الاستلام" readonly>
+
+      <button class="checkout-btn" type="submit">تجهيز الطلب</button>
+    </form>
+    <div id="orderResult" style="display:none;margin-top:15px">
+      <p>تم تجهيز ملخص الطلب على جهازك، لكن لم يُرسل إلى المحل.</p>
+      <textarea id="orderText" readonly></textarea>
+      <button class="add" type="button" onclick="copyOrder()">نسخ تفاصيل الطلب</button>
+      <p id="copyStatus" class="small"></p>
     </div>
-  </main>
+    <p class="small">لن يتم إرسال بياناتك للمحل من هذه النسخة وحدها. يلزم ربط المتجر بخدمة استقبال الطلبات قبل استخدامه مع الزبائن.</p>
+  </section>
+</main>
+
+<footer>
+  الرباط للمواد الغذائية © 2026<br>
+  الشعبية، سرت — ليبيا
+</footer>
+
+<script>
+const products = [
+ {id:1,name:"أرز",category:"مواد أساسية",emoji:"🍚",price:7,unit:"كيس تجريبي"},
+ {id:2,name:"مكرونة",category:"مواد أساسية",emoji:"🍝",price:3,unit:"عبوة تجريبية"},
+ {id:3,name:"سكر",category:"مواد أساسية",emoji:"🧂",price:4,unit:"عبوة تجريبية"},
+ {id:4,name:"زيت طعام",category:"مواد أساسية",emoji:"🫗",price:8,unit:"عبوة تجريبية"},
+ {id:5,name:"حليب",category:"ألبان",emoji:"🥛",price:4,unit:"عبوة تجريبية"},
+ {id:6,name:"جبنة",category:"ألبان",emoji:"🧀",price:6,unit:"عبوة تجريبية"},
+ {id:7,name:"بيض",category:"ألبان",emoji:"🥚",price:9,unit:"علبة تجريبية"},
+ {id:8,name:"مياه",category:"مشروبات",emoji:"💧",price:2,unit:"عبوة تجريبية"},
+ {id:9,name:"عصير",category:"مشروبات",emoji:"🧃",price:3,unit:"عبوة تجريبية"},
+ {id:10,name:"بسكويت",category:"تسالي",emoji:"🍪",price:2,unit:"عبوة تجريبية"},
+ {id:11,name:"شيبس",category:"تسالي",emoji:"🥔",price:2.5,unit:"كيس تجريبي"},
+ {id:12,name:"منظف منزلي",category:"منظفات",emoji:"🧴",price:7,unit:"عبوة تجريبية"}
+];
+
+let cart = {};
+let activeCategory = "الكل";
+const categories = ["الكل", ...new Set(products.map(p=>p.category))];
+
+function money(n){return Number(n).toFixed(2)}
+function renderCategories(){
+ document.getElementById("categories").innerHTML = categories.map(c =>
+  `<button class="${c===activeCategory?'active':''}" onclick="chooseCategory(${JSON.stringify(c)})">${c}</button>`
+ ).join("");
+}
+function chooseCategory(c){activeCategory=c;renderCategories();renderProducts()}
+function renderProducts(){
+ const term=document.getElementById("search").value.trim().toLowerCase();
+ const shown=products.filter(p=>(activeCategory==="الكل"||p.category===activeCategory)&&p.name.toLowerCase().includes(term));
+ document.getElementById("products").innerHTML=shown.length?shown.map(p=>`
+  <article class="product">
+   <div class="emoji">${p.emoji}</div>
+   <h3>${p.name}</h3>
+   <p>${p.unit} — سعر تجريبي</p>
+   <div class="price">${money(p.price)} د.ل</div>
+   <button class="add" onclick="addToCart(${p.id})">أضف للسلة</button>
+  </article>`).join(""):"<p>لا توجد منتجات مطابقة للبحث.</p>";
+}
+function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart()}
+function changeQty(id,amount){
+ cart[id]=(cart[id]||0)+amount;
+ if(cart[id]<=0)delete cart[id];
+ renderCart();
+}
+function totalPrice(){
+ return products.reduce((sum,p)=>sum+p.price*(cart[p.id]||0),0);
+}
+function renderCart(){
+ const chosen=products.filter(p=>cart[p.id]);
+ document.getElementById("cart").innerHTML=chosen.length?chosen.map(p=>`
+  <div class="cart-row">
+   <div>${p.emoji} ${p.name}<br><span class="small">${money(p.price)} د.ل × ${cart[p.id]}</span></div>
+   <div class="qty">
+    <button onclick="changeQty(${p.id},-1)">−</button>
+    <b>${cart[p.id]}</b>
+    <button onclick="changeQty(${p.id},1)">+</button>
+   </div>
+  </div>`).join(""):'<p class="small">السلة فارغة. أضف المنتجات التي تريدها.</p>';
+ document.getElementById("total").textContent=money(totalPrice());
+}
+document.getElementById("orderForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ if(!products.some(p=>cart[p.id])){
+  alert("السلة فارغة. أضف منتجًا واحدًا على الأقل.");
+  return;
+ }
+ const lines=products.filter(p=>cart[p.id]).map(p=>
+  `- ${p.name}: ${cart[p.id]} × ${money(p.price)} د.ل = ${money(p.price*cart[p.id])} د.ل`
+ );
+ const details=
+ `طلب جديد - الرباط للمواد الغذائية\n`+
+ `الاسم: ${document.getElementById("customer").value}\n`+
+ `الهاتف: ${document.getElementById("phone").value}\n`+
+ `المنطقة: ${document.getElementById("area").value}\n`+
+ `العنوان: ${document.getElementById("address").value}\n`+
+ `ملاحظات: ${document.getElementById("notes").value||"لا توجد"}\n`+
+ `طريقة الدفع: عند الاستلام\n\nالمنتجات:\n${lines.join("\n")}\n\n`+
+ `الإجمالي التجريبي: ${money(totalPrice())} د.ل\n`+
+ `تنبيه: الأسعار تجريبية والتوصيل غير محسوب.`;
+ document.getElementById("orderText").value=details;
+ document.getElementById("orderResult").style.display="block";
+ document.getElementById("copyStatus").textContent="انسخ التفاصيل، ثم أرسلها للمحل بالطريقة التي تتفق عليها.";
+ document.getElementById("orderResult").scrollIntoView({behavior:"smooth"});
+});
+async function copyOrder(){
+ const box=document.getElementById("orderText");
+ try{
+  await navigator.clipboard.writeText(box.value);
+  document.getElementById("copyStatus").textContent="تم نسخ تفاصيل الطلب. يمكنك لصقها في رسالة.";
+ }catch(e){
+  box.focus();box.select();
+  document.getElementById("copyStatus").textContent="حدد النص وانسخه يدويًا.";
+ }
+}
+renderCategories();
+renderProducts();
+renderCart();
+</script>
 </body>
 </html>
