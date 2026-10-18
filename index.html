@@ -4,326 +4,148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#176b45">
+<meta name="theme-color" content="#073b2b">
 <title>الرباط للتسوق</title>
 <style>
+:root{--g:#073b2b;--g2:#10543d;--gold:#d8b45a;--bg:#f6f5ef}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,Tahoma,sans-serif;background:#f4f7f3;color:#202820}
-header{background:#176b45;color:white;padding:22px 16px;border-radius:0 0 22px 22px}
-.head{max-width:1050px;margin:auto}
-header h1{margin:0 0 8px;font-size:27px}
-header p{margin:0;color:#e0f0e5;font-size:14px}
-.container{max-width:1050px;margin:auto;padding:16px}
-.hero{background:#e5f1e6;border-radius:16px;padding:18px;margin-bottom:18px}
-.hero h2{margin:0 0 8px;color:#176b45}
-.hero p{margin:0;line-height:1.7}
-.search{display:flex;gap:8px;margin-top:18px}
-input,textarea,select{width:100%;padding:12px;border:1px solid #d8e1d8;border-radius:10px;font:inherit;background:white}
+body{margin:0;padding-bottom:80px;font-family:Tahoma,Arial;background:var(--bg);color:#1b2920}
+header{background:linear-gradient(135deg,var(--g),var(--g2));color:white;padding:20px 15px;border-bottom:3px solid var(--gold)}
+.brand{max-width:900px;margin:auto;display:flex;align-items:center;gap:12px}
+.logo{border:2px solid var(--gold);color:var(--gold);border-radius:14px;padding:10px 15px;font-size:24px;font-weight:bold}
+h1{font-size:21px;margin:0 0 6px}
+header p{margin:0;font-size:12px;color:#e0e8e0}
+main{max-width:900px;margin:auto;padding:15px}
+.hero{padding:20px;border-radius:18px;background:linear-gradient(120deg,#fff,#f1e7c9);border:1px solid #e6d6a5;margin-bottom:15px}
+.hero h2{color:var(--g);margin-top:0}
+.hero p{font-size:13px;line-height:1.8}
+input,select,textarea{width:100%;padding:12px;border:1px solid #d8dfd7;border-radius:10px;background:white;font:inherit;margin:5px 0 10px}
+button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:10px 13px}
+.primary{background:var(--g);color:white}
+.gold{background:var(--gold);color:var(--g);font-weight:bold}
+.outline{background:white;color:var(--g);border:1px solid #ddd}
+.search{display:flex;gap:8px}
 .search input{flex:1;min-width:0}
-button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:11px 14px;background:#176b45;color:white;font-weight:bold}
-button:hover{background:#104c31}
-h2{font-size:20px}
-.categories{display:flex;gap:8px;overflow:auto;padding:4px 0 12px}
-.categories button{background:white;color:#176b45;border:1px solid #d5dfd5;white-space:nowrap}
-.categories button.active{background:#176b45;color:white}
+.categories{display:flex;gap:8px;overflow-x:auto;margin:12px 0 20px}
+.cat{background:white;border:1px solid #ddd;white-space:nowrap}
+.cat.active{background:var(--g);color:white}
 .products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.product,.section{background:white;border:1px solid #e4e9e3;border-radius:15px;padding:12px}
-.product img{width:100%;height:125px;object-fit:contain;background:#f3f6f1;border-radius:10px}
-.emoji{height:125px;display:grid;place-items:center;background:#f3f6f1;border-radius:10px;font-size:45px}
-.product h3{font-size:16px;margin:10px 0}
-.small{font-size:12px;color:#69756c;line-height:1.7}
-.price{font-weight:bold;color:#176b45;font-size:18px;margin:10px 0}
-.product button{width:100%;margin-top:5px}
-.section{padding:16px;margin-top:18px}
-.cartrow{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #eee}
-.qty{display:flex;align-items:center;gap:6px}
-.qty button{padding:7px 10px}
-label{display:block;font-size:14px;margin:12px 0 6px}
-.total{font-weight:bold;font-size:20px;color:#176b45;margin:15px 0}
-.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.actions button{flex:1}
-.gray{background:#66756b}
-.red{background:#a52d2d}
-.notice{background:#fff4d9;padding:12px;border-radius:10px;font-size:13px;line-height:1.7}
-footer{text-align:center;padding:25px;color:#69756c;font-size:13px}
-@media(min-width:650px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}.product img,.emoji{height:170px}}
+.product{background:white;border:1px solid #e0e5dd;border-radius:15px;overflow:hidden}
+.photo{height:125px;background:#e8eee7;display:grid;place-items:center;color:#738074;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+.details{padding:11px}
+.details h3{font-size:14px;margin:0 0 8px}
+.price{color:var(--g);font-size:17px;font-weight:bold}
+.small{font-size:12px;color:#718076}
+.row{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-top:10px}
+.add{background:var(--gold);color:var(--g);font-size:21px;font-weight:bold}
+.panel{background:white;border:1px solid #e0e5dd;border-radius:15px;padding:15px;margin:14px 0}
+.panel h2{font-size:18px;color:var(--g)}
+.cartitem{padding:12px 0;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.qty{display:flex;align-items:center;gap:7px}
+.qty button{background:#eef2eb}
+.total{display:flex;justify-content:space-between;padding-top:15px;font-weight:bold;color:var(--g)}
+.notice{padding:12px;background:#fff4d7;border:1px solid #ebd9a3;border-radius:10px;font-size:12px;line-height:1.8;margin:12px 0}
+.hidden{display:none!important}
+.adminitem{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #eee}
+.adminitem .info{flex:1;min-width:0}
+.adminitem button{padding:8px;font-size:12px}
+.bottomnav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #ddd;display:flex;justify-content:center;padding:7px 3px;z-index:5}
+.navinner{width:100%;max-width:600px;display:grid;grid-template-columns:repeat(4,1fr)}
+.navbtn{background:transparent;color:#718076;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px}
+.navbtn span:first-child{font-size:20px}
+.navbtn.active{background:#edf3eb;color:var(--g);font-weight:bold}
+footer{text-align:center;font-size:11px;color:#718076;padding:20px}
+@media(min-width:600px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}.photo{height:155px}}
 </style>
 </head>
 <body>
-<header>
- <div class="head">
-  <h1>🛒 الرباط للتسوق</h1>
-  <p>كل احتياجات بيتك في مكان واحد</p>
-  <p style="margin-top:8px">📍 الشعبية، سرت — التوصيل في سرت وضواحيها</p>
-  <div class="search">
-   <input id="search" placeholder="🔎 ابحث عن منتج...">
-   <button type="button" onclick="goCart()">السلة (<span id="count">0</span>)</button>
-  </div>
- </div>
-</header>
-<main class="container">
- <div class="hero">
-  <h2>أهلاً بيك في الرباط للتسوق 👋</h2>
-  <p>اختار منتجاتك، أضفها للسلة، وجهّز طلبك بسهولة.</p>
- </div>
- <p class="notice">ملاحظة: المنتجات والأسعار الأولية للتجربة. حدّث الأسعار حسب أسعار المحل الحقيقية قبل استقبال الطلبات.</p>
- <h2>الأصناف</h2>
- <div class="categories" id="categories"></div>
- <h2>منتجاتنا</h2>
- <div class="products" id="products"></div>
+<header><div class="brand"><div class="logo">ر</div><div><h1>الرباط للتسوق</h1><p>تسوّق بسهولة • سرت وضواحيها</p></div></div></header>
+<main>
+<section id="shop">
+<div class="hero"><h2>مرحباً بيك في الرباط للتسوق</h2><p>اختار احتياجاتك، أضفها للسلة وجهّز طلبك. الدفع عند الاستلام متاح.</p></div>
+<div class="search"><input id="search" placeholder="🔎 ابحث عن منتج..."><button class="outline" onclick="view('cart')">السلة (<span id="count">0</span>)</button></div>
+<h3>الأقسام</h3><div id="categories" class="categories"></div>
+<div class="row"><h3 id="heading">كل المنتجات</h3><span id="number" class="small"></span></div>
+<div id="products" class="products"></div>
+</section>
 
- <section class="section" id="cartSection">
-  <h2>🛒 سلة المشتريات</h2>
-  <div id="cart"><p class="small">السلة فارغة، أضف منتجاتك أولاً.</p></div>
-  <div class="total">الإجمالي: <span id="total">0.00</span> د.ل</div>
- </section>
+<section id="cart" class="hidden">
+<div class="row"><h2>سلة المشتريات</h2><button class="outline" onclick="view('shop')">رجوع للمتجر</button></div>
+<div class="panel"><div id="cartitems"></div><div id="total"></div></div>
+<div class="panel"><h2>بيانات التوصيل</h2>
+<label>الاسم الكامل *</label><input id="customer" placeholder="اسم الزبون">
+<label>رقم الهاتف *</label><input id="phone" type="tel" placeholder="09xxxxxxxx">
+<label>العنوان داخل سرت أو ضواحيها *</label><textarea id="address" placeholder="المنطقة والشارع وأقرب علامة"></textarea>
+<label>طريقة الدفع</label><select id="payment"><option>الدفع عند الاستلام</option><option>موبي كاش</option><option>يسر باي</option><option>ون باي</option><option>البطاقة المصرفية</option></select>
+<label>ملاحظات</label><textarea id="notes" placeholder="ملاحظات إضافية (اختياري)"></textarea>
+<div class="notice">الحد الأدنى للطلب 20 دينار، من غير التوصيل. طرق الدفع الإلكترونية تحتاج تأكيدها مع المحل.</div>
+<button class="primary" style="width:100%" onclick="prepareOrder()">تجهيز الطلب</button>
+<p id="message" class="small"></p><textarea id="order" class="hidden" rows="9" readonly></textarea>
+<button id="copy" class="gold hidden" style="width:100%" onclick="copyOrder()">نسخ تفاصيل الطلب</button>
+</div>
+</section>
 
- <section class="section">
-  <h2>🚚 بيانات التوصيل</h2>
-  <form id="orderForm">
-   <label for="customer">اسم الزبون *</label>
-   <input id="customer" required placeholder="اكتب اسمك">
-   <label for="phone">رقم الهاتف *</label>
-   <input id="phone" type="tel" required placeholder="09xxxxxxxx">
-   <label for="area">منطقة التوصيل *</label>
-   <select id="area" required>
-    <option value="">اختر المنطقة</option>
-    <option>الشعبية</option>
-    <option>داخل سرت - منطقة أخرى</option>
-    <option>ضواحي سرت</option>
-   </select>
-   <label for="address">العنوان بالتفصيل *</label>
-   <textarea id="address" required placeholder="الشارع وأقرب علامة مميزة"></textarea>
-   <label for="notes">ملاحظات إضافية</label>
-   <textarea id="notes" placeholder="اختياري"></textarea>
-   <label>طريقة الدفع</label>
-   <input value="الدفع عند الاستلام" readonly>
-   <button type="submit" style="width:100%;margin-top:12px">تجهيز الطلب</button>
-  </form>
-  <div id="orderResult" hidden>
-   <h3>تفاصيل طلبك</h3>
-   <textarea id="orderText" rows="10" readonly></textarea>
-   <button type="button" onclick="copyOrder()" style="width:100%">نسخ تفاصيل الطلب</button>
-   <p class="small">انسخ التفاصيل وأرسلها للمحل. الطلب لا يُرسل تلقائياً من هذه النسخة.</p>
-  </div>
- </section>
+<section id="admin" class="hidden">
+<div class="row"><h2>إدارة المنتجات</h2><button class="outline" onclick="view('shop')">عرض المتجر</button></div>
+<div class="panel"><h3 id="formheading">إضافة منتج</h3>
+<label>اسم المنتج *</label><input id="pname" placeholder="اسم المنتج">
+<label>السعر بالدينار *</label><input id="pprice" type="number" min="0" step="0.01" placeholder="السعر">
+<label>القسم</label><select id="pcat"><option>مواد غذائية</option><option>مشروبات</option><option>منتجات البيت</option><option>عناية شخصية</option><option>أخرى</option></select>
+<label>وصف المنتج</label><input id="pdesc" placeholder="الحجم أو النوع">
+<label>صورة المنتج</label><input id="pimage" type="file" accept="image/*">
+<button class="primary" onclick="saveProduct()">حفظ المنتج</button>
+<button class="outline" onclick="resetForm()">إلغاء</button>
+<p class="small" id="adminmsg"></p>
+</div>
+<div class="panel"><h3>المنتجات الحالية</h3><div id="adminlist"></div></div>
+<div class="notice">مهم: هذه الإدارة تحفظ التغييرات في نفس المتصفح فقط. لكي تظهر التعديلات والصور لكل الزبائن، يلزم ربط التطبيق بقاعدة بيانات مشتركة.</div>
+</section>
 
- <section class="section" id="admin">
-  <h2>⚙️ إدارة المنتجات</h2>
-  <p class="small">من هنا تقدر تضيف منتج جديد أو تعدّل اسمه وسعره وصورته أو تحذفه.</p>
-  <form id="productForm">
-   <input type="hidden" id="editId">
-   <label for="pname">اسم المنتج *</label>
-   <input id="pname" required placeholder="مثلاً: زيت طعام">
-   <label for="pprice">السعر بالدينار الليبي *</label>
-   <input id="pprice" type="number" min="0" step="0.01" required placeholder="مثلاً: 5">
-   <label for="pcategory">الصنف *</label>
-   <input id="pcategory" required placeholder="مواد غذائية أو مشروبات">
-   <label for="pimage">رابط صورة المنتج</label>
-   <input id="pimage" type="url" placeholder="https://...">
-   <label for="pdesc">وصف المنتج</label>
-   <input id="pdesc" placeholder="الحجم أو النوع (اختياري)">
-   <div class="actions">
-    <button type="submit" id="saveBtn">إضافة المنتج</button>
-    <button type="button" class="gray" onclick="resetProductForm()">إلغاء</button>
-   </div>
-  </form>
-  <h3>نسخة احتياطية</h3>
-  <p class="small">نزّل نسخة من قائمة المنتجات حتى تقدر ترجعها لاحقاً.</p>
-  <div class="actions">
-   <button type="button" onclick="exportProducts()">تنزيل نسخة</button>
-   <button type="button" class="gray" onclick="document.getElementById('importFile').click()">استيراد نسخة</button>
-  </div>
-  <input type="file" id="importFile" accept=".json,application/json" hidden>
-  <p class="notice" style="margin-top:14px">تنبيه: الإدارة في هذا الإصدار محفوظة في متصفح جهازك فقط. المنتجات والأسعار الجديدة لن تظهر تلقائياً عند الزبائن من أجهزة أخرى. نحتاج ربط قاعدة بيانات ولوحة إدارة آمنة لذلك.</p>
- </section>
+<section id="about" class="hidden"><div class="panel"><h2>عن المتجر</h2><p>الرباط للتسوق — الشعبية، سرت، ليبيا. التوصيل في سرت وضواحيها.</p><p>الدفع عند الاستلام متاح.</p></div></section>
+<footer>الرباط للتسوق © 2026 • سرت، ليبيا</footer>
 </main>
-<footer>الرباط للتسوق © 2026<br>الشعبية، سرت — ليبيا</footer>
+
+<nav class="bottomnav"><div class="navinner">
+<button class="navbtn active" data-page="shop" onclick="view('shop')"><span>⌂</span>الرئيسية</button>
+<button class="navbtn" data-page="shop" onclick="view('shop');document.getElementById('search').focus()"><span>⌕</span>بحث</button>
+<button class="navbtn" data-page="cart" onclick="view('cart')"><span>🛒</span>السلة</button>
+<button class="navbtn" data-page="admin" onclick="view('admin')"><span>⚙</span>الإدارة</button>
+</div></nav>
 
 <script>
-const starterProducts=[
-{id:1,name:"أرز",category:"مواد أساسية",emoji:"🍚",price:7,unit:"عبوة تجريبية",image:"",description:""},
-{id:2,name:"مكرونة",category:"مواد أساسية",emoji:"🍝",price:3,unit:"عبوة تجريبية",image:"",description:""},
-{id:3,name:"سكر",category:"مواد أساسية",emoji:"🧂",price:4,unit:"عبوة تجريبية",image:"",description:""},
-{id:4,name:"زيت طعام",category:"مواد أساسية",emoji:"🫗",price:8,unit:"عبوة تجريبية",image:"",description:""},
-{id:5,name:"حليب",category:"ألبان",emoji:"🥛",price:4,unit:"عبوة تجريبية",image:"",description:""},
-{id:6,name:"جبنة",category:"ألبان",emoji:"🧀",price:6,unit:"عبوة تجريبية",image:"",description:""},
-{id:7,name:"بيض",category:"ألبان",emoji:"🥚",price:9,unit:"علبة تجريبية",image:"",description:""},
-{id:8,name:"مياه",category:"مشروبات",emoji:"💧",price:2,unit:"عبوة تجريبية",image:"",description:""},
-{id:9,name:"عصير",category:"مشروبات",emoji:"🧃",price:3,unit:"عبوة تجريبية",image:"",description:""},
-{id:10,name:"بسكويت",category:"تسالي",emoji:"🍪",price:2,unit:"عبوة تجريبية",image:"",description:""},
-{id:11,name:"شيبس",category:"تسالي",emoji:"🥔",price:2.5,unit:"كيس تجريبي",image:"",description:""},
-{id:12,name:"منظف منزلي",category:"منظفات",emoji:"🧴",price:7,unit:"عبوة تجريبية",image:"",description:""}
+const starter=[
+{id:1,name:"مياه شرب",price:1.5,cat:"مشروبات",desc:"عبوة مياه",image:""},
+{id:2,name:"عصير",price:2.5,cat:"مشروبات",desc:"حسب التوفر",image:""},
+{id:3,name:"أرز",price:7,cat:"مواد غذائية",desc:"حسب العبوة",image:""},
+{id:4,name:"مكرونة",price:2.5,cat:"مواد غذائية",desc:"أنواع مختلفة",image:""},
+{id:5,name:"مناديل",price:3,cat:"منتجات البيت",desc:"منتجات منزلية",image:""},
+{id:6,name:"صابون",price:4,cat:"عناية شخصية",desc:"حسب النوع",image:""}
 ];
+function load(key,def){try{return JSON.parse(localStorage.getItem(key))??def}catch(e){return def}}
+let products=load("ribatProducts",starter),cart=load("ribatCart",{}),category="الكل",editing=null,image="";
 const $=id=>document.getElementById(id);
-const money=n=>Number(n).toFixed(2);
-const escapeHTML=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-let products;
-try{
- const saved=localStorage.getItem("ribat_store_products");
- products=saved?JSON.parse(saved):starterProducts;
- if(!Array.isArray(products))products=starterProducts;
-}catch(e){products=starterProducts}
-let cart={};
-let activeCategory="الكل";
-
-function saveProducts(){
- try{localStorage.setItem("ribat_store_products",JSON.stringify(products))}
- catch(e){alert("تعذر الحفظ. نزّل نسخة احتياطية أو جرّب مساحة تخزين أخرى.")}
-}
-function renderCategories(){
- const cats=["الكل",...new Set(products.map(p=>p.category).filter(Boolean))];
- if(!cats.includes(activeCategory))activeCategory="الكل";
- $("categories").innerHTML=cats.map(c=>
-  `<button type="button" class="${c===activeCategory?"active":""}" data-category="${escapeHTML(c)}">${escapeHTML(c)}</button>`
- ).join("");
- $("categories").querySelectorAll("[data-category]").forEach(b=>{
-  b.onclick=()=>{activeCategory=b.dataset.category;renderCategories();renderProducts()}
- });
-}
-function renderProducts(){
- const term=$("search").value.trim().toLowerCase();
- const shown=products.filter(p=>
-  (activeCategory==="الكل"||p.category===activeCategory)&&
-  (p.name+" "+p.category+" "+(p.description||"")).toLowerCase().includes(term)
- );
- $("products").innerHTML=shown.length?shown.map(p=>`
-  <article class="product">
-   ${p.image?`<img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}" onerror="this.style.display='none'">`:`<div class="emoji">${escapeHTML(p.emoji||"🛍️")}</div>`}
-   <h3>${escapeHTML(p.name)}</h3>
-   <p class="small">${escapeHTML(p.description||p.unit||p.category)}</p>
-   <div class="price">${money(p.price)} د.ل</div>
-   <button type="button" onclick="addToCart(${Number(p.id)})">أضف للسلة ＋</button>
-   <div class="actions">
-    <button type="button" class="gray" onclick="editProduct(${Number(p.id)})">تعديل</button>
-    <button type="button" class="red" onclick="deleteProduct(${Number(p.id)})">حذف</button>
-   </div>
-  </article>`).join(""):"<p>ما فيش منتجات مطابقة للبحث.</p>";
-}
-function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart()}
-function changeQty(id,amount){
- cart[id]=(cart[id]||0)+amount;
- if(cart[id]<=0)delete cart[id];
- renderCart();
-}
-function totalPrice(){
- return products.reduce((sum,p)=>sum+p.price*(cart[p.id]||0),0);
-}
-function renderCart(){
- const chosen=products.filter(p=>cart[p.id]);
- $("count").textContent=chosen.reduce((sum,p)=>sum+cart[p.id],0);
- $("cart").innerHTML=chosen.length?chosen.map(p=>`
-  <div class="cartrow">
-   <div>${escapeHTML(p.name)}<br><span class="small">${money(p.price)} د.ل × ${cart[p.id]}</span></div>
-   <div class="qty">
-    <button type="button" onclick="changeQty(${Number(p.id)},-1)">−</button>
-    <b>${cart[p.id]}</b>
-    <button type="button" onclick="changeQty(${Number(p.id)},1)">+</button>
-   </div>
-  </div>`).join(""):'<p class="small">السلة فارغة. أضف منتجاتك أولاً.</p>';
- $("total").textContent=money(totalPrice());
-}
-function goCart(){$("cartSection").scrollIntoView({behavior:"smooth"})}
-function resetProductForm(){
- $("productForm").reset();
- $("editId").value="";
- $("saveBtn").textContent="إضافة المنتج";
-}
-function editProduct(id){
- const p=products.find(x=>Number(x.id)===Number(id));
- if(!p)return;
- $("editId").value=p.id;
- $("pname").value=p.name;
- $("pprice").value=p.price;
- $("pcategory").value=p.category;
- $("pimage").value=p.image||"";
- $("pdesc").value=p.description||"";
- $("saveBtn").textContent="حفظ التعديلات";
- $("admin").scrollIntoView({behavior:"smooth"});
-}
-function deleteProduct(id){
- const p=products.find(x=>Number(x.id)===Number(id));
- if(!p||!confirm("متأكد تبي تحذف "+p.name+"؟"))return;
- products=products.filter(x=>Number(x.id)!==Number(id));
- delete cart[id];
- saveProducts();
- renderAll();
-}
-function renderAll(){renderCategories();renderProducts();renderCart()}
-$("productForm").addEventListener("submit",e=>{
- e.preventDefault();
- const oldId=$("editId").value;
- const p={
-  id:oldId?Number(oldId):Date.now(),
-  name:$("pname").value.trim(),
-  price:Number($("pprice").value),
-  category:$("pcategory").value.trim(),
-  image:$("pimage").value.trim(),
-  description:$("pdesc").value.trim(),
-  emoji:"🛍️"
- };
- if(!p.name||!p.category||!Number.isFinite(p.price)||p.price<0){
-  alert("راجع اسم المنتج والصنف والسعر.");return;
- }
- if(oldId)products=products.map(x=>Number(x.id)===Number(oldId)?p:x);
- else products.unshift(p);
- saveProducts();
- resetProductForm();
- renderAll();
- alert("تم حفظ المنتج في هذا المتصفح.");
-});
+function save(){try{localStorage.setItem("ribatProducts",JSON.stringify(products));localStorage.setItem("ribatCart",JSON.stringify(cart))}catch(e){alert("الصورة كبيرة أو مساحة التخزين ممتلئة. جرّب صورة أصغر.")}}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function money(n){return Number(n).toLocaleString("ar-LY",{minimumFractionDigits:2,maximumFractionDigits:2})+" د.ل"}
+function view(id){["shop","cart","admin","about"].forEach(x=>$(x).classList.toggle("hidden",x!==id));document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.page===id));if(id==="cart")renderCart();if(id==="admin")renderAdmin();scrollTo(0,0)}
+function renderCategories(){let cats=["الكل",...new Set(products.map(p=>p.cat))];$("categories").innerHTML=cats.map(c=>`<button class="cat ${c===category?"active":""}" onclick="setCategory('${esc(c)}')">${esc(c)}</button>`).join("")}
+function setCategory(c){category=c;renderCategories();renderProducts()}
+function renderProducts(){let q=$("search").value.trim().toLowerCase();let list=products.filter(p=>(category==="الكل"||p.cat===category)&&(`${p.name} ${p.desc} ${p.cat}`.toLowerCase().includes(q)));$("heading").textContent=category==="الكل"?"كل المنتجات":category;$("number").textContent=list.length+" منتج";$("products").innerHTML=list.length?list.map(p=>`<article class="product"><div class="photo">${p.image?`<img src="${p.image}" alt="${esc(p.name)}">`:"صورة المنتج"}</div><div class="details"><h3>${esc(p.name)}</h3><div class="small">${esc(p.desc)}</div><p class="price">${money(p.price)}</p><div class="row"><span class="small">${esc(p.cat)}</span><button class="add" onclick="add(${p.id})">+</button></div></div></article>`).join(""):'<div class="panel">لا توجد منتجات مطابقة.</div>'}
+function add(id){cart[id]=(cart[id]||0)+1;save();updateCount()}
+function updateCount(){$("count").textContent=Object.values(cart).reduce((a,b)=>a+b,0)}
+function renderCart(){let entries=Object.entries(cart).filter(([id,q])=>q>0&&products.some(p=>p.id==id));let subtotal=entries.reduce((s,[id,q])=>s+products.find(p=>p.id==id).price*q,0);$("cartitems").innerHTML=entries.length?entries.map(([id,q])=>{let p=products.find(p=>p.id==id);return `<div class="cartitem"><div><b>${esc(p.name)}</b><div class="small">${money(p.price)} × ${q}</div></div><div class="qty"><button onclick="changeQty(${id},-1)">−</button>${q}<button onclick="changeQty(${id},1)">+</button></div></div>`}).join(""):"السلة فارغة";$("total").innerHTML=`<div class="total"><span>المجموع قبل التوصيل</span><span>${money(subtotal)}</span></div>${subtotal>0&&subtotal<20?`<div class="notice">باقي ${money(20-subtotal)} للوصول للحد الأدنى.</div>`:""}`;updateCount()}
+function changeQty(id,n){cart[id]=(cart[id]||0)+n;if(cart[id]<=0)delete cart[id];save();renderCart()}
+function prepareOrder(){let entries=Object.entries(cart).filter(([id,q])=>q>0&&products.some(p=>p.id==id));let sum=entries.reduce((s,[id,q])=>s+products.find(p=>p.id==id).price*q,0);if(!entries.length)return $("message").textContent="السلة فارغة.";if(!$("customer").value.trim()||!$("phone").value.trim()||!$("address").value.trim())return $("message").textContent="عبّي الاسم والهاتف والعنوان.";if(sum<20)return $("message").textContent="الحد الأدنى للطلب 20 دينار، من غير التوصيل.";let lines=entries.map(([id,q])=>{let p=products.find(p=>p.id==id);return `${p.name} × ${q} = ${money(p.price*q)}`}).join("\n");$("order").value=`طلب جديد - الرباط للتسوق\nالاسم: ${$("customer").value}\nالهاتف: ${$("phone").value}\nالعنوان: ${$("address").value}\nالدفع: ${$("payment").value}\nالمنتجات:\n${lines}\nالمجموع قبل التوصيل: ${money(sum)}\nالتوصيل: يُحدد بالتواصل مع المحل\nملاحظات: ${$("notes").value||"لا توجد"}`;$("order").classList.remove("hidden");$("copy").classList.remove("hidden");$("message").textContent="جهّزنا الطلب. انسخ التفاصيل وأرسلها للمحل؛ لم يُرسل تلقائياً."}
+async function copyOrder(){try{await navigator.clipboard.writeText($("order").value);alert("تم نسخ تفاصيل الطلب")}catch(e){$("order").select();alert("اضغط مطولاً على النص واختر نسخ")}}
+$("pimage").addEventListener("change",e=>{let f=e.target.files[0];if(!f){image="";return}if(f.size>800000){alert("اختار صورة أصغر من 800 كيلوبايت.");e.target.value="";image="";return}let r=new FileReader();r.onload=()=>image=r.result;r.readAsDataURL(f)});
+function saveProduct(){let name=$("pname").value.trim(),price=Number($("pprice").value);if(!name||$("pprice").value===""||price<0)return $("adminmsg").textContent="اكتب اسم المنتج وسعر صحيح.";let data={name,price,cat:$("pcat").value,desc:$("pdesc").value.trim()};if(editing!==null){let p=products.find(p=>p.id===editing);Object.assign(p,data);if(image)p.image=image}else products.unshift({id:Date.now(),...data,image});save();resetForm();renderAdmin();renderCategories();renderProducts();$("adminmsg").textContent="تم الحفظ في هذا المتصفح."}
+function renderAdmin(){$("adminlist").innerHTML=products.map(p=>`<div class="adminitem"><div class="info"><b>${esc(p.name)}</b><div class="small">${money(p.price)} • ${esc(p.cat)}</div></div><button class="outline" onclick="editProduct(${p.id})">تعديل</button><button onclick="deleteProduct(${p.id})">حذف</button></div>`).join("")||"لا توجد منتجات"}
+function editProduct(id){let p=products.find(p=>p.id===id);editing=id;$("pname").value=p.name;$("pprice").value=p.price;$("pcat").value=p.cat;$("pdesc").value=p.desc||"";$("formheading").textContent="تعديل المنتج";image="";scrollTo(0,0)}
+function deleteProduct(id){let p=products.find(p=>p.id===id);if(!confirm("حذف "+p.name+"؟"))return;products=products.filter(p=>p.id!==id);delete cart[id];save();renderAdmin();renderCategories();renderProducts();renderCart()}
+function resetForm(){editing=null;image="";["pname","pprice","pdesc","pimage"].forEach(id=>$(id).value="");$("formheading").textContent="إضافة منتج"}
 $("search").addEventListener("input",renderProducts);
-$("orderForm").addEventListener("submit",e=>{
- e.preventDefault();
- const chosen=products.filter(p=>cart[p.id]);
- if(!chosen.length){alert("السلة فارغة. أضف منتجاً أولاً.");return}
- const lines=chosen.map(p=>"- "+p.name+" × "+cart[p.id]+" = "+money(p.price*cart[p.id])+" د.ل");
- const details=
- "طلب جديد - الرباط للتسوق\n"+
- "الاسم: "+$("customer").value+"\n"+
- "الهاتف: "+$("phone").value+"\n"+
- "المنطقة: "+$("area").value+"\n"+
- "العنوان: "+$("address").value+"\n"+
- "ملاحظات: "+($("notes").value||"لا توجد")+"\n"+
- "طريقة الدفع: عند الاستلام\n\n"+
- "المنتجات:\n"+lines.join("\n")+"\n\n"+
- "الإجمالي: "+money(totalPrice())+" د.ل\n"+
- "التوصيل: يحتاج تأكيد من المحل.";
- $("orderText").value=details;
- $("orderResult").hidden=false;
- $("orderResult").scrollIntoView({behavior:"smooth"});
-});
-async function copyOrder(){
- const box=$("orderText");
- try{
-  await navigator.clipboard.writeText(box.value);
-  alert("تم نسخ تفاصيل الطلب.");
- }catch(e){
-  box.focus();box.select();
-  alert("اضغط مطولاً على النص واختر نسخ.");
- }
-}
-function exportProducts(){
- const blob=new Blob([JSON.stringify(products,null,2)],{type:"application/json"});
- const url=URL.createObjectURL(blob);
- const a=document.createElement("a");
- a.href=url;a.download="ribat-products.json";a.click();
- URL.revokeObjectURL(url);
-}
-$("importFile").addEventListener("change",async e=>{
- const file=e.target.files[0];if(!file)return;
- try{
-  const data=JSON.parse(await file.text());
-  if(!Array.isArray(data)||!data.every(p=>p.name&&Number.isFinite(Number(p.price))&&p.category)){
-   throw new Error("invalid");
-  }
-  if(confirm("استبدال قائمة المنتجات الحالية بالنسخة المختارة؟")){
-   products=data;saveProducts();renderAll();alert("تم استيراد المنتجات.");
-  }
- }catch(err){alert("الملف غير صالح.");}
- e.target.value="";
-});
-renderAll();
+renderCategories();renderProducts();renderCart();updateCount();
 </script>
 </body>
 </html>
