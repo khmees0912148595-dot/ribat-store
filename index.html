@@ -1,153 +1,204 @@
 
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>الرباط للمواد الغذائية</title>
+<meta name="theme-color" content="#176b45">
+<title>الرباط للتسوق</title>
 <style>
-:root{--green:#176b42;--light:#f3f7f2;--orange:#f3a43b}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,Tahoma,sans-serif;background:var(--light);color:#202820}
-header{background:var(--green);color:white;padding:22px 15px;text-align:center}
+body{margin:0;font-family:Arial,Tahoma,sans-serif;background:#f4f7f3;color:#202820}
+header{background:#176b45;color:white;padding:22px 16px;border-radius:0 0 22px 22px}
+.head{max-width:1050px;margin:auto}
 header h1{margin:0 0 8px;font-size:27px}
-header p{margin:0;font-size:14px}
-.container{max-width:1050px;margin:auto;padding:15px}
-.notice{background:#fff4d9;border:1px solid #f1d28b;border-radius:10px;padding:12px;margin-bottom:15px;font-size:13px}
-.search{width:100%;padding:13px;border:1px solid #ddd;border-radius:10px;font-size:16px;margin-bottom:12px}
-.categories{display:flex;gap:8px;overflow:auto;padding:3px 0 12px}
-.categories button{border:1px solid #d5dfd5;background:white;border-radius:20px;padding:10px 15px;white-space:nowrap}
-.categories button.active{background:var(--green);color:white}
-h2{font-size:21px}
+header p{margin:0;color:#e0f0e5;font-size:14px}
+.container{max-width:1050px;margin:auto;padding:16px}
+.hero{background:#e5f1e6;border-radius:16px;padding:18px;margin-bottom:18px}
+.hero h2{margin:0 0 8px;color:#176b45}
+.hero p{margin:0;line-height:1.7}
+.search{display:flex;gap:8px;margin-top:18px}
+input,textarea,select{width:100%;padding:12px;border:1px solid #d8e1d8;border-radius:10px;font:inherit;background:white}
+.search input{flex:1;min-width:0}
+button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:11px 14px;background:#176b45;color:white;font-weight:bold}
+button:hover{background:#104c31}
+h2{font-size:20px}
+.categories{display:flex;gap:8px;overflow:auto;padding:4px 0 12px}
+.categories button{background:white;color:#176b45;border:1px solid #d5dfd5;white-space:nowrap}
+.categories button.active{background:#176b45;color:white}
 .products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.product{background:white;border:1px solid #e6eae5;border-radius:13px;padding:13px;box-shadow:0 2px 7px #00000008}
-.emoji{font-size:42px;text-align:center;background:#f6f8f3;border-radius:10px;padding:12px}
-.product h3{font-size:16px;margin:10px 0 5px}
-.product p{font-size:12px;color:#777;margin:5px 0 10px}
-.price{font-weight:bold;color:var(--green);margin-bottom:10px}
-button{cursor:pointer;font-family:inherit}
-.add,.checkout-btn{border:0;background:var(--green);color:white;padding:11px;border-radius:9px;width:100%;font-size:14px}
-.section{background:white;border-radius:13px;padding:15px;margin-top:18px}
-.cart-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #eee}
-.qty{display:flex;align-items:center;gap:9px}
-.qty button{border:0;border-radius:7px;background:#e9f2e9;padding:7px 10px}
-.total{font-size:19px;font-weight:bold;color:var(--green);margin:15px 0}
+.product,.section{background:white;border:1px solid #e4e9e3;border-radius:15px;padding:12px}
+.product img{width:100%;height:125px;object-fit:contain;background:#f3f6f1;border-radius:10px}
+.emoji{height:125px;display:grid;place-items:center;background:#f3f6f1;border-radius:10px;font-size:45px}
+.product h3{font-size:16px;margin:10px 0}
+.small{font-size:12px;color:#69756c;line-height:1.7}
+.price{font-weight:bold;color:#176b45;font-size:18px;margin:10px 0}
+.product button{width:100%;margin-top:5px}
+.section{padding:16px;margin-top:18px}
+.cartrow{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #eee}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{padding:7px 10px}
 label{display:block;font-size:14px;margin:12px 0 6px}
-input,textarea,select{width:100%;padding:12px;border:1px solid #d8ded8;border-radius:8px;font:inherit;background:white}
-textarea{min-height:75px;resize:vertical}
-.small{font-size:12px;color:#777;line-height:1.7}
-footer{text-align:center;padding:25px 10px;color:#666;font-size:13px}
-@media(min-width:650px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.total{font-weight:bold;font-size:20px;color:#176b45;margin:15px 0}
+.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.actions button{flex:1}
+.gray{background:#66756b}
+.red{background:#a52d2d}
+.notice{background:#fff4d9;padding:12px;border-radius:10px;font-size:13px;line-height:1.7}
+footer{text-align:center;padding:25px;color:#69756c;font-size:13px}
+@media(min-width:650px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}.product img,.emoji{height:170px}}
 </style>
 </head>
 <body>
 <header>
-  <h1>🛒 الرباط للمواد الغذائية</h1>
+ <div class="head">
+  <h1>🛒 الرباط للتسوق</h1>
   <p>كل احتياجات بيتك في مكان واحد</p>
-  <p style="margin-top:8px">📍 الشعبية، سرت — التوصيل داخل سرت وضواحيها</p>
-</header>
-
-<main class="container">
-  <div class="notice">
-    ⚠️ هذه نسخة تجريبية للمتجر. أسماء المنتجات وأسعارها للتجربة وليست أسعارًا مؤكدة.
+  <p style="margin-top:8px">📍 الشعبية، سرت — التوصيل في سرت وضواحيها</p>
+  <div class="search">
+   <input id="search" placeholder="🔎 ابحث عن منتج...">
+   <button type="button" onclick="goCart()">السلة (<span id="count">0</span>)</button>
   </div>
+ </div>
+</header>
+<main class="container">
+ <div class="hero">
+  <h2>أهلاً بيك في الرباط للتسوق 👋</h2>
+  <p>اختار منتجاتك، أضفها للسلة، وجهّز طلبك بسهولة.</p>
+ </div>
+ <p class="notice">ملاحظة: المنتجات والأسعار الأولية للتجربة. حدّث الأسعار حسب أسعار المحل الحقيقية قبل استقبال الطلبات.</p>
+ <h2>الأصناف</h2>
+ <div class="categories" id="categories"></div>
+ <h2>منتجاتنا</h2>
+ <div class="products" id="products"></div>
 
-  <input id="search" class="search" placeholder="🔎 ابحث عن منتج..." oninput="renderProducts()">
+ <section class="section" id="cartSection">
+  <h2>🛒 سلة المشتريات</h2>
+  <div id="cart"><p class="small">السلة فارغة، أضف منتجاتك أولاً.</p></div>
+  <div class="total">الإجمالي: <span id="total">0.00</span> د.ل</div>
+ </section>
 
-  <div class="categories" id="categories"></div>
+ <section class="section">
+  <h2>🚚 بيانات التوصيل</h2>
+  <form id="orderForm">
+   <label for="customer">اسم الزبون *</label>
+   <input id="customer" required placeholder="اكتب اسمك">
+   <label for="phone">رقم الهاتف *</label>
+   <input id="phone" type="tel" required placeholder="09xxxxxxxx">
+   <label for="area">منطقة التوصيل *</label>
+   <select id="area" required>
+    <option value="">اختر المنطقة</option>
+    <option>الشعبية</option>
+    <option>داخل سرت - منطقة أخرى</option>
+    <option>ضواحي سرت</option>
+   </select>
+   <label for="address">العنوان بالتفصيل *</label>
+   <textarea id="address" required placeholder="الشارع وأقرب علامة مميزة"></textarea>
+   <label for="notes">ملاحظات إضافية</label>
+   <textarea id="notes" placeholder="اختياري"></textarea>
+   <label>طريقة الدفع</label>
+   <input value="الدفع عند الاستلام" readonly>
+   <button type="submit" style="width:100%;margin-top:12px">تجهيز الطلب</button>
+  </form>
+  <div id="orderResult" hidden>
+   <h3>تفاصيل طلبك</h3>
+   <textarea id="orderText" rows="10" readonly></textarea>
+   <button type="button" onclick="copyOrder()" style="width:100%">نسخ تفاصيل الطلب</button>
+   <p class="small">انسخ التفاصيل وأرسلها للمحل. الطلب لا يُرسل تلقائياً من هذه النسخة.</p>
+  </div>
+ </section>
 
-  <h2>منتجاتنا</h2>
-  <div class="products" id="products"></div>
-
-  <section class="section" id="cart-section">
-    <h2>🛒 سلة المشتريات</h2>
-    <div id="cart"><p class="small">السلة فارغة. أضف المنتجات التي تريدها.</p></div>
-    <div class="total">الإجمالي: <span id="total">0.00</span> د.ل</div>
-    <p class="small">الإجمالي محسوب حسب الأسعار التجريبية المعروضة.</p>
-  </section>
-
-  <section class="section">
-    <h2>🚚 بيانات التوصيل</h2>
-    <form id="orderForm">
-      <label for="customer">اسم الزبون *</label>
-      <input id="customer" required placeholder="اكتب اسمك">
-
-      <label for="phone">رقم الهاتف *</label>
-      <input id="phone" type="tel" required placeholder="09xxxxxxxx">
-
-      <label for="area">منطقة التوصيل *</label>
-      <select id="area" required>
-        <option value="">اختر المنطقة</option>
-        <option>الشعبية</option>
-        <option>داخل سرت - منطقة أخرى</option>
-        <option>ضواحي سرت</option>
-      </select>
-
-      <label for="address">العنوان بالتفصيل *</label>
-      <textarea id="address" required placeholder="الشارع، أقرب علامة مميزة، وأي تفاصيل تساعد المندوب"></textarea>
-
-      <label for="notes">ملاحظات إضافية</label>
-      <textarea id="notes" placeholder="أي ملاحظات على الطلب (اختياري)"></textarea>
-
-      <label>طريقة الدفع</label>
-      <input value="الدفع عند الاستلام" readonly>
-
-      <button class="checkout-btn" type="submit">تجهيز الطلب</button>
-    </form>
-    <div id="orderResult" style="display:none;margin-top:15px">
-      <p>تم تجهيز ملخص الطلب على جهازك، لكن لم يُرسل إلى المحل.</p>
-      <textarea id="orderText" readonly></textarea>
-      <button class="add" type="button" onclick="copyOrder()">نسخ تفاصيل الطلب</button>
-      <p id="copyStatus" class="small"></p>
-    </div>
-    <p class="small">لن يتم إرسال بياناتك للمحل من هذه النسخة وحدها. يلزم ربط المتجر بخدمة استقبال الطلبات قبل استخدامه مع الزبائن.</p>
-  </section>
+ <section class="section" id="admin">
+  <h2>⚙️ إدارة المنتجات</h2>
+  <p class="small">من هنا تقدر تضيف منتج جديد أو تعدّل اسمه وسعره وصورته أو تحذفه.</p>
+  <form id="productForm">
+   <input type="hidden" id="editId">
+   <label for="pname">اسم المنتج *</label>
+   <input id="pname" required placeholder="مثلاً: زيت طعام">
+   <label for="pprice">السعر بالدينار الليبي *</label>
+   <input id="pprice" type="number" min="0" step="0.01" required placeholder="مثلاً: 5">
+   <label for="pcategory">الصنف *</label>
+   <input id="pcategory" required placeholder="مواد غذائية أو مشروبات">
+   <label for="pimage">رابط صورة المنتج</label>
+   <input id="pimage" type="url" placeholder="https://...">
+   <label for="pdesc">وصف المنتج</label>
+   <input id="pdesc" placeholder="الحجم أو النوع (اختياري)">
+   <div class="actions">
+    <button type="submit" id="saveBtn">إضافة المنتج</button>
+    <button type="button" class="gray" onclick="resetProductForm()">إلغاء</button>
+   </div>
+  </form>
+  <h3>نسخة احتياطية</h3>
+  <p class="small">نزّل نسخة من قائمة المنتجات حتى تقدر ترجعها لاحقاً.</p>
+  <div class="actions">
+   <button type="button" onclick="exportProducts()">تنزيل نسخة</button>
+   <button type="button" class="gray" onclick="document.getElementById('importFile').click()">استيراد نسخة</button>
+  </div>
+  <input type="file" id="importFile" accept=".json,application/json" hidden>
+  <p class="notice" style="margin-top:14px">تنبيه: الإدارة في هذا الإصدار محفوظة في متصفح جهازك فقط. المنتجات والأسعار الجديدة لن تظهر تلقائياً عند الزبائن من أجهزة أخرى. نحتاج ربط قاعدة بيانات ولوحة إدارة آمنة لذلك.</p>
+ </section>
 </main>
-
-<footer>
-  الرباط للمواد الغذائية © 2026<br>
-  الشعبية، سرت — ليبيا
-</footer>
+<footer>الرباط للتسوق © 2026<br>الشعبية، سرت — ليبيا</footer>
 
 <script>
-const products = [
- {id:1,name:"أرز",category:"مواد أساسية",emoji:"🍚",price:7,unit:"كيس تجريبي"},
- {id:2,name:"مكرونة",category:"مواد أساسية",emoji:"🍝",price:3,unit:"عبوة تجريبية"},
- {id:3,name:"سكر",category:"مواد أساسية",emoji:"🧂",price:4,unit:"عبوة تجريبية"},
- {id:4,name:"زيت طعام",category:"مواد أساسية",emoji:"🫗",price:8,unit:"عبوة تجريبية"},
- {id:5,name:"حليب",category:"ألبان",emoji:"🥛",price:4,unit:"عبوة تجريبية"},
- {id:6,name:"جبنة",category:"ألبان",emoji:"🧀",price:6,unit:"عبوة تجريبية"},
- {id:7,name:"بيض",category:"ألبان",emoji:"🥚",price:9,unit:"علبة تجريبية"},
- {id:8,name:"مياه",category:"مشروبات",emoji:"💧",price:2,unit:"عبوة تجريبية"},
- {id:9,name:"عصير",category:"مشروبات",emoji:"🧃",price:3,unit:"عبوة تجريبية"},
- {id:10,name:"بسكويت",category:"تسالي",emoji:"🍪",price:2,unit:"عبوة تجريبية"},
- {id:11,name:"شيبس",category:"تسالي",emoji:"🥔",price:2.5,unit:"كيس تجريبي"},
- {id:12,name:"منظف منزلي",category:"منظفات",emoji:"🧴",price:7,unit:"عبوة تجريبية"}
+const starterProducts=[
+{id:1,name:"أرز",category:"مواد أساسية",emoji:"🍚",price:7,unit:"عبوة تجريبية",image:"",description:""},
+{id:2,name:"مكرونة",category:"مواد أساسية",emoji:"🍝",price:3,unit:"عبوة تجريبية",image:"",description:""},
+{id:3,name:"سكر",category:"مواد أساسية",emoji:"🧂",price:4,unit:"عبوة تجريبية",image:"",description:""},
+{id:4,name:"زيت طعام",category:"مواد أساسية",emoji:"🫗",price:8,unit:"عبوة تجريبية",image:"",description:""},
+{id:5,name:"حليب",category:"ألبان",emoji:"🥛",price:4,unit:"عبوة تجريبية",image:"",description:""},
+{id:6,name:"جبنة",category:"ألبان",emoji:"🧀",price:6,unit:"عبوة تجريبية",image:"",description:""},
+{id:7,name:"بيض",category:"ألبان",emoji:"🥚",price:9,unit:"علبة تجريبية",image:"",description:""},
+{id:8,name:"مياه",category:"مشروبات",emoji:"💧",price:2,unit:"عبوة تجريبية",image:"",description:""},
+{id:9,name:"عصير",category:"مشروبات",emoji:"🧃",price:3,unit:"عبوة تجريبية",image:"",description:""},
+{id:10,name:"بسكويت",category:"تسالي",emoji:"🍪",price:2,unit:"عبوة تجريبية",image:"",description:""},
+{id:11,name:"شيبس",category:"تسالي",emoji:"🥔",price:2.5,unit:"كيس تجريبي",image:"",description:""},
+{id:12,name:"منظف منزلي",category:"منظفات",emoji:"🧴",price:7,unit:"عبوة تجريبية",image:"",description:""}
 ];
+const $=id=>document.getElementById(id);
+const money=n=>Number(n).toFixed(2);
+const escapeHTML=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let products;
+try{
+ const saved=localStorage.getItem("ribat_store_products");
+ products=saved?JSON.parse(saved):starterProducts;
+ if(!Array.isArray(products))products=starterProducts;
+}catch(e){products=starterProducts}
+let cart={};
+let activeCategory="الكل";
 
-let cart = {};
-let activeCategory = "الكل";
-const categories = ["الكل", ...new Set(products.map(p=>p.category))];
-
-function money(n){return Number(n).toFixed(2)}
-function renderCategories(){
- document.getElementById("categories").innerHTML = categories.map(c =>
-  `<button class="${c===activeCategory?'active':''}" onclick="chooseCategory(${JSON.stringify(c)})">${c}</button>`
- ).join("");
+function saveProducts(){
+ try{localStorage.setItem("ribat_store_products",JSON.stringify(products))}
+ catch(e){alert("تعذر الحفظ. نزّل نسخة احتياطية أو جرّب مساحة تخزين أخرى.")}
 }
-function chooseCategory(c){activeCategory=c;renderCategories();renderProducts()}
+function renderCategories(){
+ const cats=["الكل",...new Set(products.map(p=>p.category).filter(Boolean))];
+ if(!cats.includes(activeCategory))activeCategory="الكل";
+ $("categories").innerHTML=cats.map(c=>
+  `<button type="button" class="${c===activeCategory?"active":""}" data-category="${escapeHTML(c)}">${escapeHTML(c)}</button>`
+ ).join("");
+ $("categories").querySelectorAll("[data-category]").forEach(b=>{
+  b.onclick=()=>{activeCategory=b.dataset.category;renderCategories();renderProducts()}
+ });
+}
 function renderProducts(){
- const term=document.getElementById("search").value.trim().toLowerCase();
- const shown=products.filter(p=>(activeCategory==="الكل"||p.category===activeCategory)&&p.name.toLowerCase().includes(term));
- document.getElementById("products").innerHTML=shown.length?shown.map(p=>`
+ const term=$("search").value.trim().toLowerCase();
+ const shown=products.filter(p=>
+  (activeCategory==="الكل"||p.category===activeCategory)&&
+  (p.name+" "+p.category+" "+(p.description||"")).toLowerCase().includes(term)
+ );
+ $("products").innerHTML=shown.length?shown.map(p=>`
   <article class="product">
-   <div class="emoji">${p.emoji}</div>
-   <h3>${p.name}</h3>
-   <p>${p.unit} — سعر تجريبي</p>
+   ${p.image?`<img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}" onerror="this.style.display='none'">`:`<div class="emoji">${escapeHTML(p.emoji||"🛍️")}</div>`}
+   <h3>${escapeHTML(p.name)}</h3>
+   <p class="small">${escapeHTML(p.description||p.unit||p.category)}</p>
    <div class="price">${money(p.price)} د.ل</div>
-   <button class="add" onclick="addToCart(${p.id})">أضف للسلة</button>
-  </article>`).join(""):"<p>لا توجد منتجات مطابقة للبحث.</p>";
+   <button type="button" onclick="addToCart(${Number(p.id)})">أضف للسلة ＋</button>
+   <div class="actions">
+    <button type="button" class="gray" onclick="editProduct(${Number(p.id)})">تعديل</button>
+    <button type="button" class="red" onclick="deleteProduct(${Number(p.id)})">حذف</button>
+   </div>
+  </article>`).join(""):"<p>ما فيش منتجات مطابقة للبحث.</p>";
 }
 function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart()}
 function changeQty(id,amount){
@@ -160,54 +211,119 @@ function totalPrice(){
 }
 function renderCart(){
  const chosen=products.filter(p=>cart[p.id]);
- document.getElementById("cart").innerHTML=chosen.length?chosen.map(p=>`
-  <div class="cart-row">
-   <div>${p.emoji} ${p.name}<br><span class="small">${money(p.price)} د.ل × ${cart[p.id]}</span></div>
+ $("count").textContent=chosen.reduce((sum,p)=>sum+cart[p.id],0);
+ $("cart").innerHTML=chosen.length?chosen.map(p=>`
+  <div class="cartrow">
+   <div>${escapeHTML(p.name)}<br><span class="small">${money(p.price)} د.ل × ${cart[p.id]}</span></div>
    <div class="qty">
-    <button onclick="changeQty(${p.id},-1)">−</button>
+    <button type="button" onclick="changeQty(${Number(p.id)},-1)">−</button>
     <b>${cart[p.id]}</b>
-    <button onclick="changeQty(${p.id},1)">+</button>
+    <button type="button" onclick="changeQty(${Number(p.id)},1)">+</button>
    </div>
-  </div>`).join(""):'<p class="small">السلة فارغة. أضف المنتجات التي تريدها.</p>';
- document.getElementById("total").textContent=money(totalPrice());
+  </div>`).join(""):'<p class="small">السلة فارغة. أضف منتجاتك أولاً.</p>';
+ $("total").textContent=money(totalPrice());
 }
-document.getElementById("orderForm").addEventListener("submit",function(e){
+function goCart(){$("cartSection").scrollIntoView({behavior:"smooth"})}
+function resetProductForm(){
+ $("productForm").reset();
+ $("editId").value="";
+ $("saveBtn").textContent="إضافة المنتج";
+}
+function editProduct(id){
+ const p=products.find(x=>Number(x.id)===Number(id));
+ if(!p)return;
+ $("editId").value=p.id;
+ $("pname").value=p.name;
+ $("pprice").value=p.price;
+ $("pcategory").value=p.category;
+ $("pimage").value=p.image||"";
+ $("pdesc").value=p.description||"";
+ $("saveBtn").textContent="حفظ التعديلات";
+ $("admin").scrollIntoView({behavior:"smooth"});
+}
+function deleteProduct(id){
+ const p=products.find(x=>Number(x.id)===Number(id));
+ if(!p||!confirm("متأكد تبي تحذف "+p.name+"؟"))return;
+ products=products.filter(x=>Number(x.id)!==Number(id));
+ delete cart[id];
+ saveProducts();
+ renderAll();
+}
+function renderAll(){renderCategories();renderProducts();renderCart()}
+$("productForm").addEventListener("submit",e=>{
  e.preventDefault();
- if(!products.some(p=>cart[p.id])){
-  alert("السلة فارغة. أضف منتجًا واحدًا على الأقل.");
-  return;
+ const oldId=$("editId").value;
+ const p={
+  id:oldId?Number(oldId):Date.now(),
+  name:$("pname").value.trim(),
+  price:Number($("pprice").value),
+  category:$("pcategory").value.trim(),
+  image:$("pimage").value.trim(),
+  description:$("pdesc").value.trim(),
+  emoji:"🛍️"
+ };
+ if(!p.name||!p.category||!Number.isFinite(p.price)||p.price<0){
+  alert("راجع اسم المنتج والصنف والسعر.");return;
  }
- const lines=products.filter(p=>cart[p.id]).map(p=>
-  `- ${p.name}: ${cart[p.id]} × ${money(p.price)} د.ل = ${money(p.price*cart[p.id])} د.ل`
- );
+ if(oldId)products=products.map(x=>Number(x.id)===Number(oldId)?p:x);
+ else products.unshift(p);
+ saveProducts();
+ resetProductForm();
+ renderAll();
+ alert("تم حفظ المنتج في هذا المتصفح.");
+});
+$("search").addEventListener("input",renderProducts);
+$("orderForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const chosen=products.filter(p=>cart[p.id]);
+ if(!chosen.length){alert("السلة فارغة. أضف منتجاً أولاً.");return}
+ const lines=chosen.map(p=>"- "+p.name+" × "+cart[p.id]+" = "+money(p.price*cart[p.id])+" د.ل");
  const details=
- `طلب جديد - الرباط للمواد الغذائية\n`+
- `الاسم: ${document.getElementById("customer").value}\n`+
- `الهاتف: ${document.getElementById("phone").value}\n`+
- `المنطقة: ${document.getElementById("area").value}\n`+
- `العنوان: ${document.getElementById("address").value}\n`+
- `ملاحظات: ${document.getElementById("notes").value||"لا توجد"}\n`+
- `طريقة الدفع: عند الاستلام\n\nالمنتجات:\n${lines.join("\n")}\n\n`+
- `الإجمالي التجريبي: ${money(totalPrice())} د.ل\n`+
- `تنبيه: الأسعار تجريبية والتوصيل غير محسوب.`;
- document.getElementById("orderText").value=details;
- document.getElementById("orderResult").style.display="block";
- document.getElementById("copyStatus").textContent="انسخ التفاصيل، ثم أرسلها للمحل بالطريقة التي تتفق عليها.";
- document.getElementById("orderResult").scrollIntoView({behavior:"smooth"});
+ "طلب جديد - الرباط للتسوق\n"+
+ "الاسم: "+$("customer").value+"\n"+
+ "الهاتف: "+$("phone").value+"\n"+
+ "المنطقة: "+$("area").value+"\n"+
+ "العنوان: "+$("address").value+"\n"+
+ "ملاحظات: "+($("notes").value||"لا توجد")+"\n"+
+ "طريقة الدفع: عند الاستلام\n\n"+
+ "المنتجات:\n"+lines.join("\n")+"\n\n"+
+ "الإجمالي: "+money(totalPrice())+" د.ل\n"+
+ "التوصيل: يحتاج تأكيد من المحل.";
+ $("orderText").value=details;
+ $("orderResult").hidden=false;
+ $("orderResult").scrollIntoView({behavior:"smooth"});
 });
 async function copyOrder(){
- const box=document.getElementById("orderText");
+ const box=$("orderText");
  try{
   await navigator.clipboard.writeText(box.value);
-  document.getElementById("copyStatus").textContent="تم نسخ تفاصيل الطلب. يمكنك لصقها في رسالة.";
+  alert("تم نسخ تفاصيل الطلب.");
  }catch(e){
   box.focus();box.select();
-  document.getElementById("copyStatus").textContent="حدد النص وانسخه يدويًا.";
+  alert("اضغط مطولاً على النص واختر نسخ.");
  }
 }
-renderCategories();
-renderProducts();
-renderCart();
+function exportProducts(){
+ const blob=new Blob([JSON.stringify(products,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;a.download="ribat-products.json";a.click();
+ URL.revokeObjectURL(url);
+}
+$("importFile").addEventListener("change",async e=>{
+ const file=e.target.files[0];if(!file)return;
+ try{
+  const data=JSON.parse(await file.text());
+  if(!Array.isArray(data)||!data.every(p=>p.name&&Number.isFinite(Number(p.price))&&p.category)){
+   throw new Error("invalid");
+  }
+  if(confirm("استبدال قائمة المنتجات الحالية بالنسخة المختارة؟")){
+   products=data;saveProducts();renderAll();alert("تم استيراد المنتجات.");
+  }
+ }catch(err){alert("الملف غير صالح.");}
+ e.target.value="";
+});
+renderAll();
 </script>
 </body>
 </html>
