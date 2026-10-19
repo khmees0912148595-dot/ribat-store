@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الرباط للتسوق | إدارة المحل</title>
+<style>
+:root {
+  --green: #103d2d;
+  --green2: #18543d;
+  --gold: #d8b568;
+  --bg: #f4f6f2;
+  --white: #ffffff;
+  --text: #1c2b23;
+  --muted: #718076;
+  --border: #e2e8e1;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+header {
+  background: linear-gradient(135deg, #103d2d, #1c5b40);
+  color: white;
+  padding: 23px 18px 27px;
+  border-radius: 0 0 25px 25px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo {
+  width: 49px;
+  height: 49px;
+  border: 2px solid var(--gold);
+  border-radius: 15px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  font-size: 27px;
+}
+h1 { font-size: 20px; margin: 0 0 6px; }
+header p { margin: 0; color: #e3eadd; font-size: 13px; }
+.status {
+  margin-top: 20px;
+  background: #ffffff16;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+main { padding: 18px 14px 100px; max-width: 700px; margin: auto; }
+h2 { font-size: 18px; margin: 23px 0 13px; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.stat {
+  background: white;
+  padding: 17px 14px;
+  border: 1px solid var(--border);
+  border-radius: 17px;
+}
+.stat span { color: var(--muted); font-size: 13px; }
+.stat strong { display: block; font-size: 27px; margin-top: 10px; color: var(--green); }
+.tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+.tab {
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 10px;
+  padding: 10px 15px;
+  white-space: nowrap;
+  color: var(--green);
+  cursor: pointer;
+}
+.tab.active { background: var(--green); color: white; }
+.panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 16px;
+  margin-top: 12px;
+}
+.empty { text-align: center; padding: 27px 12px; color: var(--muted); }
+.empty .symbol { font-size: 38px; margin-bottom: 12px; }
+.field { margin: 12px 0; }
+label { display: block; font-size: 13px; margin-bottom: 7px; }
+input, select, textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  font: inherit;
+  outline-color: var(--gold);
+}
+button.primary {
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 11px;
+  padding: 12px 15px;
+  font: inherit;
+  cursor: pointer;
+}
+button.secondary {
+  background: #f0f4ef;
+  color: var(--green);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 13px;
+  font: inherit;
+  cursor: pointer;
+}
+button:active { opacity: .8; }
+.product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+.product:last-child { border-bottom: 0; }
+.product small { display: block; color: var(--muted); margin-top: 5px; }
+.product-actions { display: flex; gap: 6px; }
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 3px calc(10px + env(safe-area-inset-bottom));
+  z-index: 5;
+}
+nav button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 12px;
+  padding: 5px;
+  cursor: pointer;
+}
+nav button.active { color: var(--green); font-weight: bold; }
+nav span { display: block; font-size: 20px; margin-bottom: 4px; }
+.note { color: var(--muted); font-size: 12px; line-height: 1.8; }
+.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">ر</div>
+    <div>
+      <h1>الرباط للتسوق</h1>
+      <p>لوحة إدارة صاحب المحل</p>
+    </div>
+  </div>
+  <div class="status">🟡 لوحة تجريبية — الربط بقاعدة الطلبات لم يكتمل</div>
+</header>
+
+<main>
+  <section id="home">
+    <h2>نظرة عامة</h2>
+    <div class="stats">
+      <div class="stat"><span>كل الطلبات</span><strong id="orderCount">0</strong></div>
+      <div class="stat"><span>الطلبات الجديدة</span><strong id="newCount">0</strong></div>
+      <div class="stat"><span>المنتجات</span><strong id="productCount">0</strong></div>
+      <div class="stat"><span>قيمة الطلبات التجريبية</span><strong id="total">0 د.ل</strong></div>
+    </div>
+
+    <h2>آخر الطلبات</h2>
+    <div class="panel">
+      <div class="empty">
+        <div class="symbol">🛍️</div>
+        <strong>ستظهر الطلبات هنا</strong>
+        <p>بعد ربط التطبيق بقاعدة Firebase المشتركة مع تطبيق الزبائن.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="orders" class="hidden">
+    <h2>إدارة الطلبات</h2>
+    <div class="tabs">
+      <button class="tab active" onclick="filterOrders('all',this)">الكل</button>
+      <button class="tab" onclick="filterOrders('new',this)">جديدة</button>
+      <button class="tab" onclick="filterOrders('preparing',this)">قيد التجهيز</button>
+      <button class="tab" onclick="filterOrders('done',this)">مكتملة</button>
+    </div>
+    <div id="ordersList" class="panel">
+      <div class="empty">لا توجد طلبات تجريبية حاليًا.</div>
+    </div>
+    <p class="note">هذه القائمة تجريبية حاليًا؛ لن تظهر فيها طلبات الزبائن الحقيقية قبل ربط Firebase.</p>
+  </section>
+
+  <section id="products" class="hidden">
+    <h2>إضافة منتج</h2>
+    <div class="panel">
+      <div class="field">
+        <label for="pname">اسم المنتج</label>
+        <input id="pname" placeholder="مثال: زيت نباتي">
+      </div>
+      <div class="field">
+        <label for="pprice">السعر بالدينار الليبي</label>
+        <input id="pprice" type="number" min="0" step="0.01" placeholder="0.00">
+      </div>
+      <div class="field">
+        <label for="pqty">الكمية المتوفرة</label>
+        <input id="pqty" type="number" min="0" step="1" placeholder="0">
+      </div>
+      <div class="field">
+        <label for="pimage">رابط صورة المنتج (اختياري)</label>
+        <input id="pimage" type="url" placeholder="https://...">
+      </div>
+      <button class="primary" onclick="addProduct()">إضافة للقائمة التجريبية</button>
+      <p class="note">المنتجات هنا تجريبية ومحفوظة في ذاكرة الصفحة فقط، ولا تظهر للزبائن. سنربطها بقاعدة البيانات في الخطوة التالية.</p>
+    </div>
+    <h2>قائمة المنتجات التجريبية</h2>
+    <div id="productsList" class="panel">
+      <div class="empty">ما أضفتش منتجات لحد الآن.</div>
+    </div>
+  </section>
+
+  <section id="settings" class="hidden">
+    <h2>إعدادات المحل</h2>
+    <div class="panel">
+      <div class="field">
+        <label>اسم المحل</label>
+        <input value="الرباط للتسوق" readonly>
+      </div>
+      <div class="field">
+        <label>العنوان</label>
+        <input value="الشعبية، سرت، ليبيا" readonly>
+      </div>
+      <div class="field">
+        <label>الحد الأدنى للطلب</label>
+        <input value="20 د.ل" readonly>
+      </div>
+      <p class="note">حسابات صاحب المحل، إشعارات الطلبات، وربط الدفع تحتاج إعدادًا آمنًا قبل التشغيل الفعلي.</p>
+    </div>
+  </section>
+</main>
+
+<nav>
+  <button class="active" onclick="showPage('home',this)"><span>⌂</span>الرئيسية</button>
+  <button onclick="showPage('orders',this)"><span>▤</span>الطلبات</button>
+  <button onclick="showPage('products',this)"><span>🛒</span>المنتجات</button>
+  <button onclick="showPage('settings',this)"><span>⚙</span>الإعدادات</button>
+</nav>
+
+<script>
+let products = [];
+let orders = [];
+let currentFilter = 'all';
+
+function showPage(id, button) {
+  document.querySelectorAll('main > section').forEach(section => {
+    section.classList.add('hidden');
+  });
+  document.getElementById(id).classList.remove('hidden');
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  button.classList.add('active');
+}
+
+function filterOrders(filter, button) {
+  currentFilter = filter;
+  document.querySelectorAll('#orders .tab').forEach(b => b.classList.remove('active'));
+  button.classList.add('active');
+  renderOrders();
+}
+
+function renderOrders() {
+  const list = document.getElementById('ordersList');
+  const filtered = orders.filter(order =>
+    currentFilter === 'all' || order.status === currentFilter
+  );
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty">لا توجد طلبات في هذا القسم.</div>';
+    return;
+  }
+  list.innerHTML = '';
+  filtered.forEach(order => {
+    const card = document.createElement('div');
+    card.className = 'product';
+    const info = document.createElement('div');
+    const title = document.createElement('strong');
+    title.textContent = order.name;
+    const detail = document.createElement('small');
+    detail.textContent = order.total + ' د.ل — ' + order.phone;
+    info.append(title, detail);
+    const select = document.createElement('select');
+    [['new','جديد'],['preparing','قيد التجهيز'],['done','مكتمل']].forEach(([value,label]) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = label;
+      select.appendChild(option);
+    });
+    select.value = order.status;
+    select.onchange = () => {
+      order.status = select.value;
+      renderOrders();
+      updateStats();
+    };
+    card.append(info, select);
+    list.appendChild(card);
+  });
+}
+
+function addProduct() {
+  const name = document.getElementById('pname').value.trim();
+  const price = Number(document.getElementById('pprice').value);
+  const qty = Number(document.getElementById('pqty').value);
+  const image = document.getElementById('pimage').value.trim();
+
+  if (!name || document.getElementById('pprice').value === '' ||
+      !Number.isFinite(price) || price < 0 ||
+      document.getElementById('pqty').value === '' ||
+      !Number.isFinite(qty) || qty < 0) {
+    alert('اكتب اسم المنتج والسعر والكمية بشكل صحيح.');
+    return;
+  }
+  products.push({name, price, qty, image});
+  document.getElementById('pname').value = '';
+  document.getElementById('pprice').value = '';
+  document.getElementById('pqty').value = '';
+  document.getElementById('pimage').value = '';
+  renderProducts();
+  updateStats();
+  alert('أُضيف المنتج للقائمة التجريبية فقط. لم يُحفظ في قاعدة البيانات.');
+}
+
+function renderProducts() {
+  const list = document.getElementById('productsList');
+  list.innerHTML = '';
+  if (!products.length) {
+    list.innerHTML = '<div class="empty">ما أضفتش منتجات لحد الآن.</div>';
+    return;
+  }
+  products.forEach((product, index) => {
+    const row = document.createElement('div');
+    row.className = 'product';
+    const info = document.createElement('div');
+    const name = document.createElement('strong');
+    name.textContent = product.name;
+    const detail = document.createElement('small');
+    detail.textContent = product.price.toFixed(2) + ' د.ل — الكمية: ' + product.qty;
+    info.append(name, detail);
+    if (product.image) {
+      const img = document.createElement('img');
+      img.src = product.image;
+      img.alt = '';
+      img.width = 48;
+      img.height = 48;
+      img.style.objectFit = 'cover';
+      img.style.borderRadius = '8px';
+      info.appendChild(img);
+    }
+    const del = document.createElement('button');
+    del.className = 'secondary';
+    del.textContent = 'حذف';
+    del.onclick = () => {
+      products.splice(index, 1);
+      renderProducts();
+      updateStats();
+    };
+    row.append(info, del);
+    list.appendChild(row);
+  });
+}
+
+function updateStats() {
+  document.getElementById('orderCount').textContent = orders.length;
+  document.getElementById('newCount').textContent =
+    orders.filter(o => o.status === 'new').length;
+  document.getElementById('productCount').textContent = products.length;
+  document.getElementById('total').textContent =
+    orders.reduce((sum, o) => sum + Number(o.total || 0), 0).toFixed(2) + ' د.ل';
+}
+
+updateStats();
+renderOrders();
+renderProducts();
+</script>
+</body>
+</html>
+
+
+
